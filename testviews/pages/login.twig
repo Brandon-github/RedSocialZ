@@ -1,0 +1,30 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = 'Login' %}
+
+{% block content %}
+<div class="container has-top-margin">
+    <form action="" class="register">
+        <h1>Inicia sesion</h1>
+        <div class="field">
+            <label class="label">Nombres</label>
+            <input type="text" class="input">
+        </div>
+        <div class="field">
+            <label class="label">Contraseña</label>
+            <input type="password" class="input">
+        </div>
+        <div class="field mg-top:lg">
+            <button class="button is-primary is-fullwidth" type="submit">
+                <i data-icon='&#xe174'></i> Registrase ahora
+            </button>
+        </div>
+        <hr>
+        <p class="text:center">
+            ¿No tienes una cuenta? <a href="/signup">Registrate aqui</a>
+        </p>
+    </form>
+
+</div>
+
+{% endblock %}
