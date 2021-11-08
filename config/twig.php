@@ -4,7 +4,7 @@ use const config\DEVELOPMENT;
 use const config\VERSION;
 
 // deirectorio de las vistas
-$templateDir = __DIR__ . '/../testviews';
+$templateDir = __DIR__ . '/../views';
 $loader = new \Twig\Loader\FilesystemLoader($templateDir);
 
 // paths
