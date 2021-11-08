@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title|default('New Page')}}</title>
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="/assets/scss/main.css">
+</head>
+
+<body>
+    <main id="swup" class="transition-fade">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="https://unpkg.com/swup@2.0.14/dist/swup.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+</body>
+
+</html>
