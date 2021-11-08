@@ -27,9 +27,9 @@ if(isset($_GET['c']))
         require_once('./views/errors/404.php');
     }
 }
-else
+else if(!isset($_SESSION['user']) && !isset($_GET['c']))
 {
-    require_once('./views/errors/404.php');
+    require_once './views/auth/register.php';
 }
 
 ?>
