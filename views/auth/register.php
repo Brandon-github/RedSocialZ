@@ -47,7 +47,7 @@
             </div>
             <hr>
             <p class="text:center">
-                ¿Ya tienes una cuenta? <a href="/">Inicia sesion aqui</a>
+                ¿Ya tienes una cuenta? <a href="/login">Inicia sesion aqui</a>
             </p>
         </form>
     </main>

@@ -29,7 +29,7 @@
             </div>
             <hr>
             <p class="text:center">
-                ¿No tienes una cuenta? <a href="/">Registrate aqui</a>
+                ¿No tienes una cuenta? <a href="/signup">Registrate aqui</a>
             </p>
         </form>
     </main>
