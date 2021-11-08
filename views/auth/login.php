@@ -29,7 +29,7 @@
             </div>
             <hr>
             <p class="text:center">
-                ¿Ya tienes una cuenta? <a href="/">Inicia sesion aqui</a>
+                ¿No tienes una cuenta? <a href="/">Registrate aqui</a>
             </p>
         </form>
     </main>
