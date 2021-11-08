@@ -152,8 +152,6 @@
     @return unquote($values);
 }
 
-@use 'sass:math';
-
 @function _div($a, $b) {
     @if not variable-exists("__legacy-libsass") and call(get-function("function-exists"), "div", "math") {
         @return call(get-function($name: "div", $module: "math"), $a, $b);
