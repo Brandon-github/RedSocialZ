@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="./scss/main.css">
+    <link rel="stylesheet" href="./assets/scss/main.css">
 </head>
 
 <body class="container has-top-margin">
@@ -53,7 +53,7 @@
     </main>
 
     <script src="https://unpkg.com/swup@2.0.14/dist/swup.min.js"></script>
-    <script src="./js/app.js"></script>
+    <script src="./assets/js/app.js"></script>
 </body>
 
 </html>
