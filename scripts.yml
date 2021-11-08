@@ -1,0 +1,4 @@
+scripts:
+  dev:
+    desc: Inicia el servidor
+    cmd: php -S localhost:8080
