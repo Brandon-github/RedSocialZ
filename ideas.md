@@ -1,5 +1,4 @@
 ## Ideas
-
 Este archivo lo usaremos para definir las ideas del proyecto de la red social
 como que tecnologias, patrones de diseño e integraciones que se usuaran y como vamos a implementarlas
 
