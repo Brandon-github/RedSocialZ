@@ -33,6 +33,17 @@
         }
     }
 
+    &-lock {
+        display: block;
+        width: 100%;
+        background-color: $primary-color;
+        background: linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+        padding: $padding-lg;
+        border-radius: $radius-sm;
+        color: #fff;
+        text-align: center;
+    }
+
     &-actions {
         display: grid;
         font-size: 0.9rem;
