@@ -165,6 +165,17 @@ class userController
 
         header('Location: ' . BASE_URL . 'user/signup');
     }
+
+    //Funcion de actualizacion de datos
+    public function update()
+    {
+        if(isset($_SESSION['user']))
+        {
+            unset($_SESSION['user']);
+        }
+
+        header('Location: ' . BASE_URL . 'user/update');
+    }
 }
 
 
