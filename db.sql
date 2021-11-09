@@ -2,18 +2,21 @@ CREATE DATABASE SocialCube;
 
 USE SocialCube;
 
+--Cambios en las contraint de users
 CREATE TABLE users(
 id          int not null auto_increment,
 name        varchar(70) not null,
 surname     varchar(70) not null,
 nickname    varchar(70) not null,
-image_uuid  varchar(100) not null,
+image_uuid  varchar(2550),
 email       varchar(30) not null,
 password    varchar(255) not null,
-biography   TEXT not null,
+biography   TEXT,
 created_at  timestamp not null,
 updated_at  timestamp not null,
-CONSTRAINT pk_users PRIMARY KEY(id)
+CONSTRAINT pk_users PRIMARY KEY(id),
+CONSTRAINT uq_users UNIQUE(email),
+CONSTRAINT uq_users_nickname UNIQUE(nickname)
 );
 
 CREATE TABLE chats(
@@ -30,7 +33,7 @@ CONSTRAINT pk_chats PRIMARY KEY(id)
 CREATE TABLE posts(
 id          int not null auto_increment,
 user_id     int not null,
-key         varchar not null,
+key_secret  varchar(255) not null,
 description TEXT not null,
 is_secret   int not null,
 content     LONGTEXT not null,

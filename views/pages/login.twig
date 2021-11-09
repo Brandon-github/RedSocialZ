@@ -3,24 +3,28 @@
 {% set title = 'Login' %}
 {% block content %}
 <div class="container has-top-margin">
-    <form action="" class="register">
-        <h1>Inicia sesion</h1>
+    <form action="{{BASE_URL}}user/start" class="register" method="POST">
+        <h1>Inicia sesión</h1>
         <div class="field">
-            <label class="label">Nombres</label>
-            <input type="text" class="input">
+            <label class="label">Email</label>
+            <input name="email" type="email" class="input is-text">
         </div>
         <div class="field">
             <label class="label">Contraseña</label>
-            <input type="password" class="input">
+            <input name="password" type="password" class="input">
         </div>
         <div class="field mg-top:lg">
             <button class="button is-primary is-fullwidth" type="submit">
-                <i data-icon='&#xe174'></i> Registrase ahora
+                <i data-icon='&#xe174'></i> Inicar sesión
             </button>
         </div>
         <hr>
+
+        <p class="text:center" style="color:red">{{ errors['email'] }}</p>
+        <p class="text:center" style="color:red">{{ errors['password'] }}</p>
+
         <p class="text:center">
-            ¿No tienes una cuenta? <a href="./signup">Registrate aqui</a>
+            ¿No tienes una cuenta? <a href="./signup">Registrate aquí</a>
         </p>
     </form>
 

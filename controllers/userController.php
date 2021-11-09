@@ -4,19 +4,37 @@ require_once 'models/User.php';
 
 class userController
 {
+    //vistas
     public function signup()
     {
-        View::render('@pages/signup.twig');
+        if(!isset($_SESSION['user']))
+        {
+            View::render('@pages/signup.twig', ['errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+            unset($_SESSION['errors']);
+        }
+        else
+        {
+            header('Location: ' . BASE_URL);
+        }
     }
 
     public function login()
     {
-        View::render('@pages/login.twig');
+        if(!isset($_SESSION['user']))
+        {
+            View::render('@pages/login.twig', ['errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+            unset($_SESSION['errors']);
+        }
+        else
+        {
+            header('Location: ' . BASE_URL);
+        }
     }
 
+    //Metodo del registro del usuario
     public function save()
     {
-        if(isset($_POST))
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/signup')
         {
             //Variables iniciales
             $name = false;
@@ -50,7 +68,7 @@ class userController
 
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
-            if($name && $surname && $username && $email && $password === $confirm_password)
+            if($name && $surname && $username && $email && $password === $confirm_password && strlen($password) <= 255)
             {
                 $user->setName($name);
                 $user->setSurname($surname);
@@ -60,26 +78,92 @@ class userController
 
                 $query = $user->save();
 
-                if($query != false)
+                //Ver errores en la consulta
+                if($query != false && $query != null)
                 {
-                    if(is_int($query))
+                    $error = true;
+                    if(is_numeric($query))
                     {
-                        $_SESSION['errors']['duplicado'] = true;
+                        
+                        if($query == 1062)
+                        {
+                            $error = true;
+                            $_SESSION['errors'][1602] = 'El nombre de usuario o correo ya fueron registrados.';
+                        }
 
                     }
                     elseif(is_object($query))
                     {
+                        $error = false;
                         $_SESSION['user'] = $query;
                     }
 
-                    header('Location: ../home/welcome');
+                    if($error == false)
+                    {
+                        header('Location: ' . BASE_URL . 'home/welcome');
+                    }else
+                    {
+                        header('Location: ' . BASE_URL . 'user/signup');
+                    }
                     
                 }
+                else
+                {
+                    $_SESSION['errors']['validate'] = 'Ha ocurrido un error, revise que todos los datos esten escritos correctamente y que las contraseñas coindican';
+                    header('Location: ' . BASE_URL . 'user/signup');
+                }
 
+            }
+            else
+            {
+                $_SESSION['errors']['validate'] = 'Ha ocurrido un error, revise que todos los datos esten escritos correctamente y que las contraseñas coindican';
+                header('Location: ' . BASE_URL . 'user/signup');
             }
 
 
         }
+    }
+
+    //Funcion de login
+    public function start()
+    {
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/login')
+        {
+            $user = new User();
+
+            $password = sanitizeString($_POST['password'], $user->db);
+            $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+
+            if($email && strlen($password) <= 255)
+            {
+                $user->setEmail($email);
+                $user->setPassword($password);
+
+                $login = $user->login();
+            
+                if(is_object($login))
+                {
+                    $_SESSION['user'] = $login;
+                    header('Location: ' . BASE_URL . 'home/welcome');
+                }else
+                {
+                    header('Location: ' . BASE_URL . 'user/login');
+                }
+            
+            }
+        }
+    }
+
+    //Funcion de cerrado de sesion
+    public function logout()
+    {
+        if(isset($_SESSION['user']))
+        {
+            unset($_SESSION['user']);
+        }
+
+        header('Location: ' . BASE_URL . 'user/signup');
     }
 }
 

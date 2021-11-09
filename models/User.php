@@ -23,7 +23,7 @@ class User
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -43,7 +43,7 @@ class User
 
     /**
      * Get the value of surname
-     */ 
+     */
     public function getSurname()
     {
         return $this->surname;
@@ -53,7 +53,7 @@ class User
      * Set the value of surname
      *
      * @return  self
-     */ 
+     */
     public function setSurname($surname)
     {
         $this->surname = $surname;
@@ -63,7 +63,7 @@ class User
 
     /**
      * Get the value of username
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -73,7 +73,7 @@ class User
      * Set the value of username
      *
      * @return  self
-     */ 
+     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -83,7 +83,7 @@ class User
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -93,7 +93,7 @@ class User
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -103,7 +103,7 @@ class User
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
@@ -113,7 +113,7 @@ class User
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -123,7 +123,7 @@ class User
 
     /**
      * Get the value of biography
-     */ 
+     */
     public function getBiography()
     {
         return $this->biography;
@@ -133,7 +133,7 @@ class User
      * Set the value of biography
      *
      * @return  self
-     */ 
+     */
     public function setBiography($biography)
     {
         $this->biography = $biography;
@@ -144,28 +144,47 @@ class User
     public function save()
     {
         //Guardar usuario en la base de datos
-        $result = false;
         $password = $this->getPassword();
 
-        $check = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+        $query = $this->db->query("INSERT INTO users VALUES(null, '{$this->name}', '{$this->surname}', '{$this->username}', null, '{$this->email}', '{$password}', null, NOW(), NOW())");
+        $newUser = $this->db->query("SELECT * FROM users WHERE email='{$this->email}' OR nickname='{$this->username}' ");
 
-        if($check->num_rows == 0)
+        if ($query)
         {
-            $query = $this->db->query("INSERT INTO users VALUES(null, '{$this->name}', '{$this->surname}', '{$this->username}', '{$this->email}', '{$password}', null, NOW(), NOW())");
-            $newUser = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+            return $newUser->fetch_object();
+        } else {
+            return 1062;
+        }
+    }
 
-            if($query)
+    //Metodo para hacer el login del usuario
+    public function login()
+    {
+        $password = $this->password;
+
+        $sql = "SELECT * FROM users WHERE email='{$this->email}'";
+        $query = $this->db->query($sql);
+
+        if($query && $query->num_rows == 1)
+        {
+            //Verificar contraseña
+            $user = $query->fetch_object();
+
+            $verify = password_verify($password, $user->password);
+
+            if($verify)
             {
-                return $newUser->fetch_object();
-            }else
-            {
-                return $result;
+                return $user;
             }
+            else
+            {
+                $_SESSION['errors']['password'] = 'La contraseña no coindice con nuestros registros';
+            }
+
         }
         else
         {
-            return 1505;
+            $_SESSION['errors']['email'] = 'No encontramos ningun usuario con el email ' . $this->email;
         }
-    
     }
 }
