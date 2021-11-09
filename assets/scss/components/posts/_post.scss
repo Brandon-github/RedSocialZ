@@ -49,4 +49,14 @@
         font-size: 0.9rem;
         @include col(1 1 1);
     }
+
+    &-share {
+        display: grid;
+        gap: $margin;
+        margin-top: $margin-sm;
+        margin-bottom: $margin-sm;
+        a {
+            display: block;
+        }
+    }
 }
