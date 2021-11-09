@@ -37,7 +37,7 @@ if (isset($_GET['c'])) {
         View::error404();
     }
 } else if (!isset($_SESSION['user'])) {
-    header('Location: user/signup');
+    header('Location: ' . BASE_URL . 'user/signup');
 }
 else if(isset($_SESSION['user']) && !isset($_GET['c']))
 {
