@@ -8,12 +8,6 @@ $navbar-bg: $secondary-bg;
     top: 0;
     transition: transform 0.3s;
     height: 60px;
-
-    @include to(md) {
-        position: fixed;
-        bottom: 0;
-        top: auto;
-    }
 }
 
 .navbar-logo {
@@ -43,10 +37,10 @@ $navbar-bg: $secondary-bg;
     .nav-item {
         height: 100%;
         padding: $padding;
-        border-radius: $radius-sm;
+        border-radius: rpt(2, 0) rpt(2, $radius-sm);
         @include center;
     }
-    
+
     .nav-item.is-active {
         background-color: $extra-bg;
     }
