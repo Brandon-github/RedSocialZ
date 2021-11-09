@@ -18,3 +18,4 @@ $twig = new \Twig\Environment($loader, [
 ]);
 
 $twig->addGlobal('appVersion', VERSION);
+$twig->addGlobal('BASE_URL', BASE_URL);
