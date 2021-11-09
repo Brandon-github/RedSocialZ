@@ -1,13 +1,37 @@
-<div class="post">
-    <h2>
-        Nombre
-    </h2>
-    <p>
-        Descripcion
-    </p>
-    <form action="">
-        <div class="field">
-            <input type="text" class="input">
+<div class="grid:2 posts">
+    <div class="post">
+        <div class="post-user">
+            <div>
+                {% include '@components/images/circle.twig' with {src: 'https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png'} %}
+            </div>
+            <div class="user-data">
+                <div>
+                    <span class="username">
+                        frankalvarez
+                    </span>
+                    <span class="date opacity:1">
+                        hace una hora
+                    </span>
+                </div>
+            </div>
         </div>
-    </form>
+        <p class="post-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas molestias nesciunt!
+        </p>
+        <hr>
+        <div class="post-actions">
+            <button>
+                <i data-icon='favorite'></i>
+                Me gusta
+            </button>
+            <button>
+                <i data-icon='question_answer'></i>
+                Comentarios
+            </button>
+            <button>
+                <i data-icon='share'></i>
+                Compartir
+            </button>
+        </div>
+    </div>
 </div>

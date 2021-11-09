@@ -1,0 +1,41 @@
+.post {
+    background-color: $secondary-bg;
+    padding: $padding;
+    border-radius: $radius-sm;
+    
+    &-description {
+        margin-top: 0;
+        margin-bottom: $margin;
+    }
+
+    &-user {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 0.5rem;
+        margin-bottom: $margin;
+        
+        & .user-data {
+            @include center-y;
+            height: 100%;
+        }
+
+        & .photo {
+            border-radius: $radius-full;
+        }
+
+        & .username {
+            display: block;
+            line-height: 0.6rem;
+        }
+        
+        & .date {
+            font-size: 0.8rem;
+        }
+    }
+
+    &-actions {
+        display: grid;
+        font-size: 0.9rem;
+        @include col(1 1 1);
+    }
+}
