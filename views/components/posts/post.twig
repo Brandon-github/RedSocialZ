@@ -1,13 +1,91 @@
-<div class="post">
-    <h2>
-        Nombre
-    </h2>
-    <p>
-        Descripcion
-    </p>
-    <form action="">
-        <div class="field">
-            <input type="text" class="input">
+<div class="modal" id="modal-1" aria-hidden="true">
+    <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <header class="modal-header">
+                <h2 class="modal-title" id="modal-1-title">Desbloquear</h2> 
+                <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
+            </header>
+
+            <div class="modal-content" id="modal-1-content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit cum iure saepe!
+                </p>
+                <form>
+                    <div class="field">
+                        <input type="text" class="input" placeholder="Escriba la contraseña">
+                    </div>
+                </form>
+            </div>
+            
+            <footer class="modal__footer"> 
+                <button class="button is-primary">
+                    <i data-icon="lock_open"></i>
+                    Continuar
+                </button>
+                <button class="button is-danger" data-micromodal-close="" aria-label="Close this dialog window">
+                    <i data-icon="cancel"></i>
+                    Cerrar
+                </button>
+            </footer>
         </div>
-    </form>
+    </div>
+</div>
+
+<div class="posts">
+    <div class="post">
+        <div class="post-user">
+            <div>
+                {% include '@components/images/circle.twig' with {src:
+                'https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png'} %}
+            </div>
+            <div class="user-data">
+                <div>
+                    <span class="username">
+                        frankalvarez
+                    </span>
+                    <span class="date opacity:1">
+                        hace una hora <i data-icon="lock"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p class="post-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas molestias nesciunt!
+        </p>
+        <button class="post-lock" onclick="MicroModal.show('modal-1');">
+            <i data-icon="lock"></i>
+            Desbloquear
+        </button>
+        <hr>
+        <div class="post-actions">
+            <button>
+                <i data-icon='favorite'></i>
+                6 Me gusta
+            </button>
+            <button>
+                <i data-icon='question_answer'></i>
+                2 Comentarios   
+            </button>
+            <button id="share">
+                <i data-icon='share'></i>
+                Compartir
+            </button>
+        </div>
+    </div>
+</div>
+<div id="template" style="display: none;">
+    <div class="post-share">
+        <a href="/">
+            <i class="brand-facebook"></i>
+            Facebook
+        </a>
+        <a href="/">
+            <i class="brand-twitter"></i>
+            Twitter
+        </a>
+        <a href="/">
+            <i class="brand-whatsapp"></i>
+            WhatsApp
+        </a>
+    </div>
 </div>

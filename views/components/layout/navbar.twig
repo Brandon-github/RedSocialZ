@@ -1,25 +1,35 @@
-<div class="navbar-menu">
-    <div class="menu-item" onclick="openNavbar()">
-        <i class="menu-icon" data-icon="menu"></i>
-    </div>
-</div>
 <div class="navbar-logo">
-    <a href='/' >
+    <a href='/'>
         <h3>
-            SocialCube
+            socialcube
         </h3>
     </a>
 </div>
 <header class="navbar" id="navbar">
     <div class="navbar-links">
-        <a href="/" class="nav-item" onclick="openNavbar()">
-            Inicio
+        <a href="/" class="nav-item is-active" data-nav='/'>
+            <div>
+                <i data-icon='explore'></i>
+                <span>
+                    Explorar
+                </span>
+            </div>
         </a>
-        <a href="/perfil" class="nav-item" onclick="openNavbar()">
-            Mi perfil
+        <a href="/login" class="nav-item" data-nav='/login'>
+            <div>
+                <i data-icon='chat'></i>
+                <span>
+                    Messages
+                </span>
+            </div>
         </a>
-        <a href="/login" class="nav-item button is-primary" onclick="openNavbar()">
-            Iniciar sesion <i data-icon="arrow_forward"></i>
+        <a href="/perfil" class="nav-item" data-nav='/perfil'>
+            <div>
+                <i data-icon='face'></i>
+                <span>
+                    Mi perfil
+                </span>
+            </div>
         </a>
     </div>
 </header>

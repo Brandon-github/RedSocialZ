@@ -4,23 +4,10 @@ $navbar-bg: $secondary-bg;
     position: sticky;
     width: 100%;
     background-color: $navbar-bg;
-    // background-color: red;
     z-index: 9999;
     top: 0;
-    height: 100vh;
     transition: transform 0.3s;
-    
-    @include from(md) {
-        height: 60px;
-    }
-
-    @include to(md) {
-        transform: translate(-100%, 0px);
-
-        &.is-active {
-            transform: translate(0, 0px);
-        }
-    }
+    height: 60px;
 }
 
 .navbar-logo {
@@ -35,86 +22,35 @@ $navbar-bg: $secondary-bg;
     }
 
     @include to(md) {
-        background-color: $navbar-bg;
-        width: 100%;
-        height: 60px;
-        left: 0;
-        top: 0;
-        padding: 12px;
+        display: none;
     }
 }
 
 .navbar-links {
     height: 100%;
-    display: flex;
+    display: grid;
+    @include grid(1 1 1);
+    align-items: center;
+    margin-right: 20%;
+    margin-left: 20%;
 
-    @include from(md) {
-        justify-content: space-around;
-        align-items: center;
-        margin-right: 20%;
-        margin-left: 20%;
-
-    }
-
-    @include to(md) {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        flex-direction: column;
-        margin-top: 80px;
-        text-align: center;
-    }
-}
-.nav-item {
-    &.is-active {
-        opacity: 0.6;
-    }
-}
-@include to(md) {
     .nav-item {
-        display: block;
-        margin-bottom: 1rem;
-    }
-}
-
-.navbar-container {
-    padding-top: 60px;
-
-    &.has-margin-top {
-        padding-top: 60px + 20px;
+        height: 100%;
+        padding: $padding;
+        border-radius: rpt(2, 0) rpt(2, $radius-sm);
+        @include center;
     }
 
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-
-    @include from(md) {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-
+    .nav-item.is-active {
+        background-color: $extra-bg;
     }
-}
-
-.navbar-theme {
-    position: fixed;
-    top: 12px;
-    right: 15px;
-    z-index: 999999;
-    font-size: 1.6rem;
-    cursor: pointer;
 
     @include to(md) {
-        right: 60px;
-    }
-}
+        margin-right: 0;
+        margin-left: 0;
 
-.navbar-menu {
-    display: none;
-
-    @include to(md) {
-        position: fixed;
-        top: 12px;
-        right: 15px;
-        z-index: 999999;
-        font-size: 1.6rem;
-        display: block;
+        .nav-item span {
+            display: none;
+        }
     }
 }

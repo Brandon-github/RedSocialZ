@@ -1,0 +1,68 @@
+.posts {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post {
+    background-color: $secondary-bg;
+    padding: $padding;
+    border-radius: $radius-sm;
+    
+    &-description {
+        margin-top: 0;
+        margin-bottom: $margin;
+    }
+
+    &-user {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 0.5rem;
+        margin-bottom: $margin;
+        
+        & .user-data {
+            @include center-y;
+            height: 100%;
+        }
+
+        & .photo {
+            border-radius: $radius-full;
+        }
+
+        & .username {
+            display: block;
+            line-height: 0.6rem;
+        }
+        
+        & .date {
+            font-size: 0.8rem;
+        }
+    }
+
+    &-lock {
+        display: block;
+        width: 100%;
+        background-color: $primary-color;
+        background: linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+        padding: $padding-lg;
+        border-radius: $radius-sm;
+        color: #fff;
+        text-align: center;
+    }
+
+    &-actions {
+        display: grid;
+        font-size: 0.9rem;
+        @include col(1 1 1);
+    }
+
+    &-share {
+        display: grid;
+        gap: $margin;
+        margin-top: $margin-sm;
+        margin-bottom: $margin-sm;
+        a {
+            display: block;
+        }
+    }
+}
