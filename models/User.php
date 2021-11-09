@@ -4,7 +4,7 @@ class User
 {
     private $name;
     private $surname;
-    private $nickname;
+    private $username;
     private $email;
     private $password;
     private $biography;
@@ -62,21 +62,21 @@ class User
     }
 
     /**
-     * Get the value of nickname
+     * Get the value of username
      */ 
-    public function getNickname()
+    public function getUsername()
     {
-        return $this->nickname;
+        return $this->username;
     }
 
     /**
-     * Set the value of nickname
+     * Set the value of username
      *
      * @return  self
      */ 
-    public function setNickname($nickname)
+    public function setUsername($username)
     {
-        $this->nickname = $nickname;
+        $this->username = $username;
 
         return $this;
     }
@@ -106,7 +106,7 @@ class User
      */ 
     public function getPassword()
     {
-        return $this->password;
+        return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     /**
@@ -140,7 +140,32 @@ class User
 
         return $this;
     }
+
+    public function save()
+    {
+        //Guardar usuario en la base de datos
+        $result = false;
+        $password = $this->getPassword();
+
+        $check = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+
+        if($check->num_rows == 0)
+        {
+            $query = $this->db->query("INSERT INTO users VALUES(null, '{$this->name}', '{$this->surname}', '{$this->username}', '{$this->email}', '{$password}', null, NOW(), NOW())");
+            $newUser = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+
+            if($query)
+            {
+                return $newUser->fetch_object();
+            }else
+            {
+                return $result;
+            }
+        }
+        else
+        {
+            return 1505;
+        }
+    
+    }
 }
-
-
-?>

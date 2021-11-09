@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title|default('New Page')}}</title>
+    <title>{{title|default('SocialCube')}}</title>
     {% block head %}{% endblock %}
-    <link rel="stylesheet" href="/assets/css/main.css?v={{appVersion}}">
+    <link rel="stylesheet" href="assets/css/main.css?v={{appVersion}}">
 </head>
 
 <body>
     <main id="swup" class="transition-fade">
         {% block content %}{% endblock %}
     </main>
-    <script type="module" src="/assets/js/app.js?v={{appVersion}}"></script>
+    <script type="module" src="assets/js/app.js?v={{appVersion}}"></script>
 </body>
-
 </html>

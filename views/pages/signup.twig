@@ -1,35 +1,37 @@
 {% extends '@layout/default.twig' %}
 
-{% set title = 'Registrarse' %}
+{% set title = 'Registrarse'  %}
 
 {% block content %}
 <div class="container has-top-margin">
-    <form action="" class="register">
+
+    {# El action lo deje de como me funciona ahorita cuando pueda por favor arreglen los links#}
+    <form method="POST" action="user/save" class="register">
         <h1>Registrate</h1>
         <div class="grid:2 gap">
             <div>
-                <label class="label">Nombres</label>
-                <input type="text" class="input">
+                <label class="label">Nombre</label>
+                <input autocomplete="off" name="name" type="text" class="input">
             </div>
             <div>
                 <label class="label">Apellidos</label>
-                <input type="text" class="input">
+                <input autocomplete="off" name="surname" type="text" class="input">
             </div>
             <div>
                 <label class="label">Username</label>
-                <input type="text" class="input">
+                <input autocomplete="off" name="username" type="text" class="input">
             </div>
             <div>
                 <label class="label">Correo electronico</label>
-                <input type="email" class="input is-text">
+                <input name="email" type="email" class="input is-text">
             </div>
             <div>
                 <label class="label">Contraseña</label>
-                <input type="password" class="input">
+                <input name="password" type="password" class="input">
             </div>
             <div>
                 <label class="label">Repita contraseña</label>
-                <input type="password" class="input">
+                <input name="repeat-password" type="password" class="input">
             </div>
         </div>
         <div class="field mg-top:lg">
@@ -39,7 +41,7 @@
         </div>
         <hr>
         <p class="text:center">
-            ¿Ya tienes una cuenta? <a href="/login">Inicia sesion aqui</a>
+            ¿Ya tienes una cuenta? <a href="./login">Inicia sesion aqui</a>
         </p>
     </form>
 </div>

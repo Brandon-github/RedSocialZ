@@ -1,9 +1,12 @@
 <?php
-//Configuraciones del sitio
+//Inicar sesion e incluir archivos de ayuda
 session_start();
 ob_start();
 require_once 'autoload.php';
 require_once 'config/db.php';
+require_once './config/parameters.php';
+require_once './helpers/helpers.php';
+
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/config/config.php';
@@ -29,6 +32,9 @@ if (isset($_GET['c'])) {
         View::error404();
     }
 } else if (!isset($_SESSION['user'])) {
-    // renderiza el vista
-    View::render('@pages/login.twig');
+    header('Location: user/signup');
+}
+else if(isset($_SESSION['user']) && !isset($_GET['c']))
+{
+    header('Location: ' . BASE_URL . 'home/welcome');
 }

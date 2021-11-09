@@ -7,7 +7,8 @@ class DB
     {
         //Los parametros de la conexión los pueden cambiar a su usuario de sql, yo puse uno que me
         //invente ya que el root me daba problemas
-        $db = new mysqli('localhost', 'main', 'DeltaFoxtrot', 'SocialCube');
+        $db = new mysqli('localhost', 'root', 'root', 'SocialCube');
+        $db->query('SET CHARSETS UTF-8');
 
         if($db)
         {

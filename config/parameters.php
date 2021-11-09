@@ -1,5 +1,13 @@
 <?php
+//Funciones extras
 
-define('base_url', 'localhost/RedSocialZ/');
+define('BASE_URL', 'localhost/RedSocialZ/');
 
-?>
+
+function sanitizeString($var, $connection)
+{
+    $var = strip_tags($var);
+    $var = htmlentities($var);
+    $var = stripslashes($var);
+    return $connection->real_escape_string($var);
+}

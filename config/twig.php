@@ -12,9 +12,8 @@ $loader->addPath($templateDir . '/components', 'components');
 $loader->addPath($templateDir . '/pages', 'pages');
 $loader->addPath($templateDir . '/layout', 'layout');
 
-// inicializa twig
 $twig = new \Twig\Environment($loader, [
-    'cache' => __DIR__ . '/temp',
+    'cache' => DEVELOPMENT ? false : __DIR__ . '/temp',
     'auto_reload' => DEVELOPMENT
 ]);
 
