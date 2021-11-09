@@ -2,6 +2,10 @@
 
 {% set title = 'Inicio' %}
 
+{# body #}
 {% block content %}
 	<h1>Hola mundo con {{name}}</h1>
+
+	{% include '@components/test.twig' with {name: 'frank'} %}
+
 {% endblock %}

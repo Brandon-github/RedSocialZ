@@ -30,5 +30,5 @@ if (isset($_GET['c'])) {
     }
 } else if (!isset($_SESSION['user'])) {
     // renderiza el vista
-    View::render('@pages/login.twig');
+    View::render('@pages/posts.twig');
 }

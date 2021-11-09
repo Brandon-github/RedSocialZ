@@ -6,13 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title|default('New Page')}}</title>
+    
+    {# bloque head #}
     {% block head %}{% endblock %}
+    
     <link rel="stylesheet" href="/assets/css/main.css?v={{appVersion}}">
 </head>
 
 <body>
+    {% include '@components/layout/navbar.twig' %}
     <main id="swup" class="transition-fade">
+    
+        {# contenido #}
         {% block content %}{% endblock %}
+    
     </main>
     <script type="module" src="/assets/js/app.js?v={{appVersion}}"></script>
 </body>
