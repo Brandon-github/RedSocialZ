@@ -47,3 +47,28 @@
 html.is-animating .transition-fade {
     opacity: 0;
 }
+
+.tippy-box[data-theme~='socialcube'] {
+    background-color: $extra-bg;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-box[data-theme~='socialcube'][data-placement^='top']>.tippy-arrow::before {
+    border-top-color: $extra-bg;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-box[data-theme~='socialcube'][data-placement^='bottom']>.tippy-arrow::before {
+    border-bottom-color: $extra-bg;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-box[data-theme~='socialcube'][data-placement^='left']>.tippy-arrow::before {
+    border-left-color: $extra-bg;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-box[data-theme~='socialcube'][data-placement^='right']>.tippy-arrow::before {
+    border-right-color: $extra-bg;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}

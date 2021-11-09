@@ -20,5 +20,6 @@ tippy('#share', {
     interactive: true,
     placement: 'bottom',
     trigger: 'click',
-    allowHTML: true
+    allowHTML: true,
+    theme: 'socialcube'
 });
