@@ -72,3 +72,9 @@ html.is-animating .transition-fade {
     border-right-color: $extra-bg;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
+.swup-progress-bar {
+    height: 0.2rem;
+    background-color: $primary-color;
+    z-index: 10000;
+}
