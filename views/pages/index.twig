@@ -2,6 +2,14 @@
 
 {% set title = 'Inicio' %}
 
+{# body #}
 {% block content %}
+<<<<<<< HEAD
 	<h1>Bienvenido a la página principal {{name}}</h1>
+=======
+	<h1>Hola mundo con {{name}}</h1>
+
+	{% include '@components/test.twig' with {name: 'frank'} %}
+
+>>>>>>> b85dbed446613f5b58b65335fe1137e8269fb1d9
 {% endblock %}

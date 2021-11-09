@@ -37,9 +37,14 @@ if (isset($_GET['c'])) {
         View::error404();
     }
 } else if (!isset($_SESSION['user'])) {
+<<<<<<< HEAD
     header('Location: user/signup');
 }
 else if(isset($_SESSION['user']) && !isset($_GET['c']))
 {
     header('Location: ' . BASE_URL . 'home/welcome');
+=======
+    // renderiza el vista
+    View::render('@pages/posts.twig');
+>>>>>>> b85dbed446613f5b58b65335fe1137e8269fb1d9
 }
