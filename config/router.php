@@ -12,6 +12,8 @@ $router->get('/login', 'UserController@login');
 
 $router->get('/logout', 'UserController@logout');
 
+$router->get('/user/update', 'UserController@update');
+
 // error 404
 $router->set404(function () {
     View::error404();

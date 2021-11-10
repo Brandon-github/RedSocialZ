@@ -14,7 +14,7 @@ class userController
         }
         else
         {
-            header('Location: ' . BASE_URL);
+            redirect('/');
         }
     }
 
@@ -27,7 +27,7 @@ class userController
         }
         else
         {
-            header('Location: ' . BASE_URL);
+            redirect('/');
         }
     }
 
@@ -100,24 +100,24 @@ class userController
 
                     if($error == false)
                     {
-                        header('Location: ' . BASE_URL . 'home/welcome');
+                        redirect('/');
                     }else
                     {
-                        header('Location: ' . BASE_URL . 'user/signup');
+                        redirect('signup');
                     }
                     
                 }
                 else
                 {
                     $_SESSION['errors']['validate'] = 'Ha ocurrido un error, revise que todos los datos esten escritos correctamente y que las contraseñas coindican';
-                    header('Location: ' . BASE_URL . 'user/signup');
+                    redirect('signup');
                 }
 
             }
             else
             {
                 $_SESSION['errors']['validate'] = 'Ha ocurrido un error, revise que todos los datos esten escritos correctamente y que las contraseñas coindican';
-                header('Location: ' . BASE_URL . 'user/signup');
+                redirect('signup');
             }
 
 
@@ -144,10 +144,10 @@ class userController
                 if(is_object($login))
                 {
                     $_SESSION['user'] = $login;
-                    header('Location: ' . BASE_URL . 'home/welcome');
+                    redirect('/');
                 }else
                 {
-                    header('Location: ' . BASE_URL . 'user/login');
+                    redirect('login');
                 }
             
             }
@@ -162,18 +162,13 @@ class userController
             unset($_SESSION['user']);
         }
 
-        header('Location: ' . BASE_URL . 'user/signup');
+        redirect('signup');
     }
 
     //Funcion de actualizacion de datos
     public function update()
     {
-        if(isset($_SESSION['user']))
-        {
-            unset($_SESSION['user']);
-        }
-
-        header('Location: ' . BASE_URL . 'user/update');
+        View::render('@pages/update.twig');
     }
 }
 
