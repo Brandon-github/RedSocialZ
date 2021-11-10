@@ -1,0 +1,16 @@
+.update {
+    max-width: 600px;
+    margin: auto;
+    padding: $padding-lg;
+    background-color: $secondary-bg;
+    border-radius: $radius;
+
+    h1 {
+        margin-bottom: $margin;
+        text-align: center;
+    }
+
+    a {
+        color: $primary-color;
+    }
+}
