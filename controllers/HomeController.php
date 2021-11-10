@@ -9,7 +9,7 @@ class homeController
             $posts = Post::getAll();
             
             View::render('@pages/index.twig', [
-                'name' => $_SESSION['user']->name,
+                'user' => $_SESSION['user'],
                 'posts' => $posts
             ]);
         }else

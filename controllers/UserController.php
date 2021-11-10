@@ -33,8 +33,8 @@ class userController
 
     //Metodo del registro del usuario
     public function save()
-    {
-        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . '/signup')
+    {  
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'signup')
         {
             //Variables iniciales
             $name = false;
@@ -121,6 +121,9 @@ class userController
             }
 
 
+        }else
+        {
+            redirect('');
         }
     }
 
@@ -144,7 +147,7 @@ class userController
                 if(is_object($login))
                 {
                     $_SESSION['user'] = $login;
-                    redirect('/');
+                    redirect('');
                 }else
                 {
                     redirect('login');
@@ -177,7 +180,30 @@ class userController
             redirect('');
         }
     }
+
+    public function saveUpdate()
+    {
+        //Validar usuario y redireccion
+        if(Helper::isUser() && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/update')
+        {
+            $user = new User(); 
+
+            $name = !empty($_POST["name"]) ? sanitizeString($_POST["name"], $user->db) : false;
+            $surname = !empty($_POST['surname']) ? sanitizeString($_POST['surname'], $user->db) : false;
+            $username = !empty($_POST['username']) ? sanitizeString($_POST['username'], $user->db) : false;
+            $biography = $_POST['biography'] ? sanitizeString($_POST['biography'], $user->db) : false;
+            $image = $_FILES['image'] ? $_FILES['image'] : false;
+            $email = !empty($_POST['email']) ? filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) : false;
+
+            if($image && ($image['type'] == 'image/jpeg' || $image['type'] == 'image/jpg' && $image['type'] == 'image/png'))
+            {
+                echo "siu";
+            }
+
+        }
+        else
+        {
+            redirect('');
+        }
+    }
 }
-
-
-?>
