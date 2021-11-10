@@ -2,15 +2,15 @@
 
 $router = new \Bramus\Router\Router();
 
-$router->get('/', 'HomeController@welcome');
+$router->get('/', 'homeController@welcome');
 
-$router->post('/user/start', 'UserController@start');
+$router->post('/user/start', 'userController@start');
 
-$router->get('/signup', 'UserController@signup');
+$router->get('/signup', 'userController@signup');
 
-$router->get('/login', 'UserController@login');
+$router->get('/login', 'userController@login');
 
-$router->get('/logout', 'UserController@logout');
+$router->get('/logout', 'userController@logout');
 
 // error 404
 $router->set404(function () {
