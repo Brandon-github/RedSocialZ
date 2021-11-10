@@ -1,11 +1,15 @@
-<IfModule mod_rewrite.c>
-#Activar rewrite
+DirectoryIndex index.php
+
+# enable apache rewrite engine
 RewriteEngine on
 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+# set your rewrite base
+# Edit this in your init method too if you script lives in a subfolder
+RewriteBase /
 
-
-RewriteRule ^(.*)/(.*) index.php?c=$1&a=$2
-
-</IfModule>
+# Deliver the folder or file directly if it exists on the server
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+ 
+# Push every request to index.php
+RewriteRule ^(.*)$ index.php [QSA]

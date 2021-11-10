@@ -8,7 +8,7 @@ id          int not null auto_increment,
 name        varchar(70) not null,
 surname     varchar(70) not null,
 nickname    varchar(70) not null,
-image_uuid  varchar(2550),
+image_uuid  varchar(255),
 email       varchar(30) not null,
 password    varchar(255) not null,
 biography   TEXT,
@@ -21,7 +21,7 @@ CONSTRAINT uq_users_nickname UNIQUE(nickname)
 
 CREATE TABLE chats(
 id          int not null auto_increment,
-send_to     varchar(70) not null
+send_to     varchar(70) not null,
 from_to     varchar(70) not null,
 created_at  timestamp not null,
 updated_at  timestamp not null,
