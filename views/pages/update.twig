@@ -1,0 +1,49 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = 'Actualizar'  %}
+
+{% block content %}
+
+<div class="container has-top-margin">
+
+    <form method="POST" action="{{BASE_URL}}user/save" class="update">
+        <h1>Actualizar datos</h1>
+        <div class="grid:2 gap">
+            <div>
+                <label class="label">Nombre</label>
+                <input autocomplete="off" name="name" type="text" class="input">
+            </div>
+            <div>
+                <label class="label">Apellidos</label>
+                <input autocomplete="off" name="surname" type="text" class="input">
+            </div>
+            <div>
+                <label class="label">Username</label>
+                <input autocomplete="off" name="username" type="text" class="input">
+            </div>
+            <div>
+                <label class="label">Correo electronico</label>
+                <input name="email" type="email" class="input is-text">
+            </div>
+            <div>
+                <label class="label">Contraseña</label>
+                <input name="password" type="password" class="input">
+            </div>
+            <div>
+                <label class="label">Repita contraseña</label>
+                <input name="repeat-password" type="password" class="input">
+            </div>
+        </div>
+        <div class="field mg-top:lg">
+            <button class="button is-primary is-fullwidth" type="submit">
+                <i data-icon='&#xe174'></i> Guardar cambios
+            </button>
+        </div>
+        <hr>
+
+        
+        <p class="text:center" style="color:red">{{ errors[1602] }}</p>
+        <p class="text:center" style="color:red">{{ errors['validate'] }}</p>
+    </form>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 <?php
 //Funciones extras
 
-define('BASE_URL', 'http://localhost/RedSocialZ/');
+define('BASE_URL', 'http://localhost:8080');
 
 
 function sanitizeString($var, $connection)
