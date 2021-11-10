@@ -7,7 +7,7 @@ class DB
     {
         //Los parametros de la conexión los pueden cambiar a su usuario de sql, yo puse uno que me
         //invente ya que el root me daba problemas
-        $db = new mysqli('localhost', 'root', 'root', 'SocialCube');
+        $db = new mysqli('198.7.62.150', 'frankalv_dev123', '8EKaTBVeapEZ321', 'frankalv_socialcube');
         $db->query('SET NAMES utf8');
 
         if($db)
