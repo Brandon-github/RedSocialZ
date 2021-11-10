@@ -29,7 +29,7 @@ $navbar-bg: $secondary-bg;
 .navbar-links {
     height: 100%;
     display: grid;
-    @include grid(1 1 1);
+    @include grid(1 1 1 1);
     align-items: center;
     margin-right: 20%;
     margin-left: 20%;
