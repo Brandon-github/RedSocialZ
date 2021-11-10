@@ -127,8 +127,7 @@ class userController
     //Funcion de login
     public function start()
     {
-        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/login')
-        {
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'login'){
             $user = new User();
 
             $password = sanitizeString($_POST['password'], $user->db);
