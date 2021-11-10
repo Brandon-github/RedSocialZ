@@ -18,11 +18,3 @@ $router->set404(function () {
 });
 
 $router->run();
-
-// vista normal
-$router->get('/signup', 'UserController@signup');
-
-// para envio de datos
-$router->post('/api/signup', function() {
-    require_once 'logica.php';
-});
