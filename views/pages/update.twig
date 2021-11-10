@@ -1,14 +1,13 @@
 {% extends '@layout/default.twig' %}
 
-{% set viewNav = 'false' %}
-{% set title = 'Registrarse'  %}
+{% set title = 'Actualizar'  %}
 
 {% block content %}
 
 <div class="container has-top-margin">
 
-    <form method="POST" action="{{BASE_URL}}user/save" class="register">
-        <h1>Registrate</h1>
+    <form method="POST" action="{{BASE_URL}}user/save" class="update">
+        <h1>Actualizar datos</h1>
         <div class="grid:2 gap">
             <div>
                 <label class="label">Nombre</label>
@@ -37,7 +36,7 @@
         </div>
         <div class="field mg-top:lg">
             <button class="button is-primary is-fullwidth" type="submit">
-                <i data-icon='&#xe174'></i> Registrase ahora
+                <i data-icon='&#xe174'></i> Guardar cambios
             </button>
         </div>
         <hr>
@@ -45,10 +44,6 @@
         
         <p class="text:center" style="color:red">{{ errors[1602] }}</p>
         <p class="text:center" style="color:red">{{ errors['validate'] }}</p>
-
-        <p class="text:center">
-            ¿Ya tienes una cuenta? <a href="./login">Inicia sesion aqui</a>
-        </p>
     </form>
 </div>
 {% endblock %}
