@@ -1,5 +1,7 @@
 <?php
 
+use const config\HASH_ID_SALT;
+
 require_once __DIR__ . '/../models/Post.php';
 
 class postController
@@ -41,6 +43,26 @@ class postController
             }
         } else {
             redirect('/'); # si no se paso el dato tipo entoces se redirige a la pagina principal
+        }
+    }
+    public function page($hash) {
+        $hashids = new Hashids(HASH_ID_SALT);
+
+        # decodifica el hash del id
+        $id = $hashids->decode($hash);
+        
+        # verifica si el hash es valido
+        if ($id) {
+            $id = $id[0];
+
+            # trae datos del post
+            $post = Post::retrieveByPK($id);
+
+            View::render('@pages/p/index.twig', [
+                'post' => $post
+            ]);
+        } else {
+            View::error404();
         }
     }
 }
