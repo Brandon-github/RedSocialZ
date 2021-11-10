@@ -146,7 +146,7 @@ class User
         //Guardar usuario en la base de datos
         $password = $this->getPassword();
 
-        $query = $this->db->query("INSERT INTO users VALUES(null, '{$this->name}', '{$this->surname}', '{$this->username}', null, '{$this->email}', '{$password}', null, NOW(), NOW())");
+        $query = $this->db->query("INSERT INTO users VALUES(null, '{$this->name}', '{$this->surname}', '{$this->username}', 'default.jpg', '{$this->email}', '{$password}', null, NOW(), NOW())");
         $newUser = $this->db->query("SELECT * FROM users WHERE email='{$this->email}' OR nickname='{$this->username}' ");
 
         if ($query)

@@ -33,8 +33,8 @@ class userController
 
     //Metodo del registro del usuario
     public function save()
-    {
-        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . '/signup')
+    {  
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'signup')
         {
             //Variables iniciales
             $name = false;
@@ -121,6 +121,9 @@ class userController
             }
 
 
+        }else
+        {
+            redirect('');
         }
     }
 
@@ -144,7 +147,7 @@ class userController
                 if(is_object($login))
                 {
                     $_SESSION['user'] = $login;
-                    redirect('/');
+                    redirect('');
                 }else
                 {
                     redirect('login');
@@ -171,6 +174,30 @@ class userController
         if(Helper::isUser())
         {
             View::render('@pages/update.twig', ['user' => $_SESSION['user']]);
+        }
+        else
+        {
+            redirect('');
+        }
+    }
+
+    public function saveUpdate()
+    {
+        //Validar usuario y redireccion
+        if(Helper::isUser() && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/update')
+        {
+            if($_POST['password'] == $_POST['repeat-password'])
+            {
+                $name = !empty($_POST["name"]) ? $_POST["name"] : false;
+                $surname = !empty($_POST['surname']) ? $_POST['surname'] : false;
+                $username = !empty($_POST['username']) ? $_POST['username'] : false;
+                $biography = $_POST['biography'] ? $_POST['biography'] : false;
+                $image = $_POST['image'] ? $_POST['image'] : false;
+                $email = !empty($_POST['email']) ? $_POST['email'] : false;
+
+            
+
+            }
         }
         else
         {

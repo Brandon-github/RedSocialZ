@@ -37,10 +37,10 @@ class postController
                 $post->is_secret = 0;
                 $post->save();
                 
-                redirect('/');
+                redirect('');
             }
         } else {
-            redirect('/'); # si no se paso el dato tipo entoces se redirige a la pagina principal
+            redirect(''); # si no se paso el dato tipo entoces se redirige a la pagina principal
         }
     }
 }

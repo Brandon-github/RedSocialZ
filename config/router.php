@@ -4,6 +4,7 @@ $router = new \Bramus\Router\Router();
 
 $router->get('/', 'HomeController@welcome');
 
+// usuarios
 $router->post('/user/start', 'UserController@start');
 
 $router->post('/user/save', 'UserController@save');
@@ -16,9 +17,11 @@ $router->get('/logout', 'UserController@logout');
 
 $router->get('/user/update', 'UserController@update');
 
+$router->post('/update', 'UserController@saveUpdate');
+
 // posts
-$router->get('/new', 'postController@form');
-$router->post('/new', 'postController@create');
+$router->get('/new', 'PostController@form');
+$router->post('/new', 'PostController@create');
 
 // error 404
 $router->set404(function () {

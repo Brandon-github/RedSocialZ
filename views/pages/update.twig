@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container has-top-margin">
 
-    <form method="POST" action="{{BASE_URL}}user/save" class="update">
+    <form method="POST" action="{{BASE_URL}}update" class="update">
         <h1>Actualizar datos</h1>
         <div class="grid:2 gap">
             <div>
@@ -27,18 +27,17 @@
             <div>
                 <label class="label">Biografía</label>
                 <textarea autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
-                <p class="text:warning">Máximo 2000 carácteres</p>
             </div>
             <div>
                 <label class="label">Correo electronico</label>
                 <input name="email"  value="{{user.email}}" type="email" class="input is-text">
             </div>
             <div>
-                <label class="label">Contraseña</label>
+                <label class="label">Contraseña actual</label>
                 <input name="password" type="password" class="input">
             </div>
             <div>
-                <label class="label">Nueva contraseña</label>
+                <label class="label">Repetir contraseña actual</label>
                 <input name="repeat-password" type="password" class="input">
             </div>
         </div>
