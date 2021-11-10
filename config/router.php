@@ -2,17 +2,19 @@
 
 $router = new \Bramus\Router\Router();
 
-$router->get('/', 'homeController@welcome');
+$router->get('/', 'HomeController@welcome');
 
-$router->post('/user/start', 'userController@start');
+$router->post('/user/start', 'UserController@start');
 
-$router->post('/user/save', 'userController@save');
+$router->post('/user/save', 'UserController@save');
 
-$router->get('/signup', 'userController@signup');
+$router->get('/signup', 'UserController@signup');
 
-$router->get('/login', 'userController@login');
+$router->get('/login', 'UserController@login');
 
-$router->get('/logout', 'userController@logout');
+$router->get('/logout', 'UserController@logout');
+
+$router->get('/user/update', 'UserController@update');
 
 // posts
 $router->get('/new', 'postController@form');
