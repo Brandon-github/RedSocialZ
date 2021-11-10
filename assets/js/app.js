@@ -37,11 +37,25 @@ swup.on('contentReplaced', () => {
 });
 
 // tipy init
-// tippy('#share', {
-//     content: document.getElementById('template').innerHTML,
-//     interactive: true,
-//     placement: 'bottom',
-//     trigger: 'click',
-//     allowHTML: true,
-//     theme: 'socialcube'
-// });
+tippy('#share', {
+    content:
+`<div class="post-share">
+    <a href="/" target='_blank'>
+        <i class="brand-facebook"></i>&nbsp;
+        Facebook
+    </a>
+    <a href="/" target='_blank'>
+        <i class="brand-twitter"></i>&nbsp;
+        Twitter
+    </a>
+    <a href="/" target='_blank'>
+        <i class="brand-whatsapp"></i>&nbsp;
+        WhatsApp
+    </a>
+</div>`,
+    interactive: true,
+    placement: 'bottom',
+    trigger: 'click',
+    allowHTML: true,
+    theme: 'socialcube'
+});
