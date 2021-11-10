@@ -34,7 +34,7 @@ class userController
     //Metodo del registro del usuario
     public function save()
     {
-        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/signup')
+        if(isset($_POST) && $_SERVER['HTTP_REFERER'] == BASE_URL . '/signup')
         {
             //Variables iniciales
             $name = false;

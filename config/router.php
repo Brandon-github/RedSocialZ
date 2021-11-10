@@ -6,6 +6,8 @@ $router->get('/', 'homeController@welcome');
 
 $router->post('/user/start', 'userController@start');
 
+$router->post('/user/save', 'userController@save');
+
 $router->get('/signup', 'userController@signup');
 
 $router->get('/login', 'userController@login');
