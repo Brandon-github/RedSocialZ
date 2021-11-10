@@ -14,7 +14,7 @@ class userController
         }
         else
         {
-            redirect('/');
+            redirect('');
         }
     }
 
@@ -27,7 +27,7 @@ class userController
         }
         else
         {
-            redirect('/');
+            redirect('');
         }
     }
 
@@ -100,7 +100,7 @@ class userController
 
                     if($error == false)
                     {
-                        redirect('/');
+                        redirect('');
                     }else
                     {
                         redirect('signup');
@@ -168,7 +168,14 @@ class userController
     //Funcion de actualizacion de datos
     public function update()
     {
-        View::render('@pages/update.twig');
+        if(Helper::isUser())
+        {
+            View::render('@pages/update.twig', ['user' => $_SESSION['user']]);
+        }
+        else
+        {
+            redirect('');
+        }
     }
 }
 

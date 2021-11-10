@@ -3,7 +3,6 @@
 {% set title = 'Actualizar'  %}
 
 {% block content %}
-
 <div class="container has-top-margin">
 
     <form method="POST" action="{{BASE_URL}}user/save" class="update">
@@ -11,26 +10,35 @@
         <div class="grid:2 gap">
             <div>
                 <label class="label">Nombre</label>
-                <input autocomplete="off" name="name" type="text" class="input">
+                <input autocomplete="off" value="{{ user.name }}" name="name" type="text" class="input">
             </div>
             <div>
                 <label class="label">Apellidos</label>
-                <input autocomplete="off" name="surname" type="text" class="input">
+                <input autocomplete="off" value="{{user.surname}}" name="surname" type="text" class="input">
             </div>
             <div>
-                <label class="label">Username</label>
-                <input autocomplete="off" name="username" type="text" class="input">
+                <label class="label">Nombre de usuario</label>
+                <input autocomplete="off" value="{{user.nickname}}" name="username" type="text" class="input">
+            </div>
+            <div>
+                <label class="label">Foto de perfil</label>
+                <input name="image" type="file" class="input">
+            </div>
+            <div>
+                <label class="label">Biografía</label>
+                <textarea autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
+                <p class="text:warning">Máximo 2000 carácteres</p>
             </div>
             <div>
                 <label class="label">Correo electronico</label>
-                <input name="email" type="email" class="input is-text">
+                <input name="email"  value="{{user.email}}" type="email" class="input is-text">
             </div>
             <div>
                 <label class="label">Contraseña</label>
                 <input name="password" type="password" class="input">
             </div>
             <div>
-                <label class="label">Repita contraseña</label>
+                <label class="label">Nueva contraseña</label>
                 <input name="repeat-password" type="password" class="input">
             </div>
         </div>
