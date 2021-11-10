@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container has-top-margin">
 
-    <form method="POST" action="{{BASE_URL}}update" class="update">
+    <form enctype='multipart/form-data' method="POST" action="{{BASE_URL}}update" class="update">
         <h1>Actualizar datos</h1>
         <div class="grid:2 gap">
             <div>
@@ -31,14 +31,6 @@
             <div>
                 <label class="label">Correo electronico</label>
                 <input name="email"  value="{{user.email}}" type="email" class="input is-text">
-            </div>
-            <div>
-                <label class="label">Contraseña actual</label>
-                <input name="password" type="password" class="input">
-            </div>
-            <div>
-                <label class="label">Repetir contraseña actual</label>
-                <input name="repeat-password" type="password" class="input">
             </div>
         </div>
         <div class="field mg-top:lg">

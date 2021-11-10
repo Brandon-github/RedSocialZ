@@ -186,18 +186,20 @@ class userController
         //Validar usuario y redireccion
         if(Helper::isUser() && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/update')
         {
-            if($_POST['password'] == $_POST['repeat-password'])
+            $user = new User(); 
+
+            $name = !empty($_POST["name"]) ? sanitizeString($_POST["name"], $user->db) : false;
+            $surname = !empty($_POST['surname']) ? sanitizeString($_POST['surname'], $user->db) : false;
+            $username = !empty($_POST['username']) ? sanitizeString($_POST['username'], $user->db) : false;
+            $biography = $_POST['biography'] ? sanitizeString($_POST['biography'], $user->db) : false;
+            $image = $_FILES['image'] ? $_FILES['image'] : false;
+            $email = !empty($_POST['email']) ? filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) : false;
+
+            if($image && ($image['type'] == 'image/jpeg' || $image['type'] == 'image/jpg' && $image['type'] == 'image/png'))
             {
-                $name = !empty($_POST["name"]) ? $_POST["name"] : false;
-                $surname = !empty($_POST['surname']) ? $_POST['surname'] : false;
-                $username = !empty($_POST['username']) ? $_POST['username'] : false;
-                $biography = $_POST['biography'] ? $_POST['biography'] : false;
-                $image = $_POST['image'] ? $_POST['image'] : false;
-                $email = !empty($_POST['email']) ? $_POST['email'] : false;
-
-            
-
+                echo "siu";
             }
+
         }
         else
         {
@@ -205,6 +207,3 @@ class userController
         }
     }
 }
-
-
-?>
