@@ -4,7 +4,7 @@ import 'https://unpkg.com/micromodal/dist/micromodal.min.js';
 import 'https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js';
 import 'https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js';
 import 'https://unpkg.com/@swup/forms-plugin@1.1.1/dist/SwupFormsPlugin.min.js';
-import LazyImages from './utils/lazyImages.js';
+import LazyImages from './utils/LazyImages.js';
 import Navbar from './utils/navbar.js';
 import { router } from './routes.js';
 
@@ -34,28 +34,4 @@ swup.on('contentReplaced', () => {
     lazyImages.start();
     Navbar.checkActiveLinks();
     router.run();
-});
-
-// tipy init
-tippy('#share', {
-    content:
-`<div class="post-share">
-    <a href="/" target='_blank'>
-        <i class="brand-facebook"></i>&nbsp;
-        Facebook
-    </a>
-    <a href="/" target='_blank'>
-        <i class="brand-twitter"></i>&nbsp;
-        Twitter
-    </a>
-    <a href="/" target='_blank'>
-        <i class="brand-whatsapp"></i>&nbsp;
-        WhatsApp
-    </a>
-</div>`,
-    interactive: true,
-    placement: 'bottom',
-    trigger: 'click',
-    allowHTML: true,
-    theme: 'socialcube'
 });
