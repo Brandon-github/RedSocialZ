@@ -1,0 +1,27 @@
+<div class="posts mg-bottom:lg">
+    <button onclick="MicroModal.show('posttype');" class="button is-bg is-fullwidth text:center">
+        <i data-icon='add'></i>
+        Publicar algo
+    </button>
+</div>
+<div class="modal" id="posttype" aria-hidden="true">
+    <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="posttype-title">
+            <header class="modal-header">
+                <h2 class="modal-title" id="posttype-title">Elige el tipo de publicacion</h2> 
+                <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
+            </header>
+            
+            <footer class="mg-top:lg posttype"> 
+                <a href="{{BASE_URL}}new?type=secret" class="button is-primary">
+                    <i data-icon="lock"></i>
+                    Secreto
+                </a>
+                <a href="{{BASE_URL}}new" class="button is-success" data-micromodal-close="" aria-label="Close this dialog window">
+                    <i data-icon="lock_open"></i>
+                    Publico
+                </a>
+            </footer>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,10 @@ $router->get('/login', 'userController@login');
 
 $router->get('/logout', 'userController@logout');
 
+// posts
+$router->get('/new', 'postController@form');
+$router->post('/new', 'postController@create');
+
 // error 404
 $router->set404(function () {
     View::error404();

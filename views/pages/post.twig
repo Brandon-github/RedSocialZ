@@ -6,39 +6,35 @@
 
 <div class="container has-top-margin">
 
-    <form method="POST" action="{{BASE_URL}}user/save" class="register">
-        <h1>Crear nuevo post</h1>
-        <div class="grid:2 gap">
-            <div>
-                <label class="label">Nombre</label>
-                <input autocomplete="off" name="name" type="text" class="input">
-            </div>
-            <div>
-                <label class="label">Apellidos</label>
-                <input autocomplete="off" name="surname" type="text" class="input">
-            </div>
-            <div>
-                <label class="label">Username</label>
-                <input autocomplete="off" name="username" type="text" class="input">
-            </div>
-            <div>
-                <label class="label">Correo electronico</label>
-                <input name="email" type="email" class="input is-text">
-            </div>
-            <div>
-                <label class="label">Contraseña</label>
-                <input name="password" type="password" class="input">
-            </div>
-            <div>
-                <label class="label">Repita contraseña</label>
-                <input name="repeat-password" type="password" class="input">
-            </div>
+    <form method="POST" action="{{BASE_URL}}new" class="register">
+        <h3 class="text:center">Crear nueva publicacion</h3>
+        <hr>
+        <div class="field">
+            <textarea class="textarea" placeholder="Escribe algo..." name="content" required></textarea>
         </div>
-        <div class="field mg-top:lg">
-            <button class="button is-primary is-fullwidth" type="submit">
-                <i data-icon='&#xe174'></i> Registrase ahora
+
+        {% if input('type') == 'secret' %}
+            <div class="field">
+                <label class="label">Descripcion de la contraseña</label>
+                <input autocomplete="off" name="description" type="text" class="input" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <input autocomplete="off" name="secret" type="text" class="input" required>
+            </div>
+            
+            <input type="hidden" name="type" value="secret">
+        {% else %}
+            <input type="hidden" name="type" value="public">
+        {% endif %}
+
+        <div class="field">
+            <button class="button is-primary is-fullwidth">
+                Publicar
             </button>
         </div>
+
         <hr>
 
         <p class="text:center">

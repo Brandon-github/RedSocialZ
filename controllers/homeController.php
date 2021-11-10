@@ -1,11 +1,17 @@
 <?php
 
+require_once __DIR__ . '/../models/Post.php';
+
 class homeController
 {
-    public function welcome()
-    {
+    public function welcome() {
         if(Helper::isUser() == true) {
-            View::render('@pages/index.twig', ['BASE_URL' => BASE_URL, 'name' => $_SESSION['user']->name]);
+            $posts = Post::getAll();
+            
+            View::render('@pages/index.twig', [
+                'name' => $_SESSION['user']->name,
+                'posts' => $posts
+            ]);
         }else
         {
             redirect('login');

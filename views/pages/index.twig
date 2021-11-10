@@ -4,5 +4,8 @@
 
 {# body #}
 {% block content %}
-	<h1>Bienvenido a la página principal {{name}}</h1>
+<div class="container has-top-margin">
+	{% include '@components/posts/new.twig' %}
+    {% include '@components/posts/posts.twig' with {posts: posts} %}
+</div>
 {% endblock %}
