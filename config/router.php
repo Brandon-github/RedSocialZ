@@ -20,6 +20,8 @@ $router->get('/user/update', 'UserController@update');
 $router->get('/new', 'postController@form');
 $router->post('/new', 'postController@create');
 
+$router->get('/p/{id}', 'postController@page');
+
 // error 404
 $router->set404(function () {
     View::error404();
