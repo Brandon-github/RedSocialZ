@@ -1,14 +1,13 @@
 {% extends '@layout/default.twig' %}
 
-{% set viewNav = 'false' %}
-{% set title = 'Registrarse'  %}
+{% set title = 'Crear Post'  %}
 
 {% block content %}
 
 <div class="container has-top-margin">
 
     <form method="POST" action="{{BASE_URL}}user/save" class="register">
-        <h1>Registrate</h1>
+        <h1>Crear nuevo post</h1>
         <div class="grid:2 gap">
             <div>
                 <label class="label">Nombre</label>
@@ -42,12 +41,8 @@
         </div>
         <hr>
 
-        
-        <p class="text:center" style="color:red">{{ errors[1602] }}</p>
-        <p class="text:center" style="color:red">{{ errors['validate'] }}</p>
-
         <p class="text:center">
-            ¿Ya tienes una cuenta? <a href="./login">Inicia sesion aqui</a>
+            Para mas información lee <a href="{{BASE_URL}}post/info">cómo funcionan los posts</a>
         </p>
     </form>
 </div>

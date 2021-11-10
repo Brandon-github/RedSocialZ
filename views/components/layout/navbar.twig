@@ -1,5 +1,6 @@
+{% if viewNav != 'false' %}
 <div class="navbar-logo">
-    <a href='/'>
+    <a href='{{BASE_URL}}'>
         <h3>
             socialcube
         </h3>
@@ -7,7 +8,7 @@
 </div>
 <header class="navbar" id="navbar">
     <div class="navbar-links">
-        <a href="/" class="nav-item is-active" data-nav='/'>
+        <a href="{{BASE_URL}}" class="nav-item is-active" data-nav='{{BASE_URL}}'>
             <div>
                 <i data-icon='explore'></i>
                 <span>
@@ -15,7 +16,7 @@
                 </span>
             </div>
         </a>
-        <a href="/login" class="nav-item" data-nav='/login'>
+        <a href="{{BASE_URL}}user/login" class="nav-item" data-nav='{{BASE_URL}}user/login'>
             <div>
                 <i data-icon='chat'></i>
                 <span>
@@ -23,7 +24,7 @@
                 </span>
             </div>
         </a>
-        <a href="/perfil" class="nav-item" data-nav='/perfil'>
+        <a href="{{BASE_URL}}" class="nav-item" data-nav='{{BASE_URL}}'>
             <div>
                 <i data-icon='face'></i>
                 <span>
@@ -41,3 +42,4 @@
         </a>
     </div>
 </header>
+{% endif %}
