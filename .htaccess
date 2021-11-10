@@ -5,7 +5,8 @@ RewriteEngine on
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-
 RewriteRule ^(.*)/(.*) index.php?c=$1&a=$2
+
+ErrorDocument 404 http://localhost/RedSocialZ/errors/404
 
 </IfModule>

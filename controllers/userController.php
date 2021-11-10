@@ -154,7 +154,7 @@ class userController
             }
         }
     }
-
+    
     //Funcion de cerrado de sesion
     public function logout()
     {

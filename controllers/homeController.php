@@ -6,7 +6,7 @@ class homeController
     {
         if(Helper::isUser() == true)
         {
-            View::render('@pages/index.twig', ['BASE_URL' => BASE_URL, 'name' => $_SESSION['user']->name]);
+            View::render('@pages/posts.twig', ['BASE_URL' => BASE_URL, 'name' => $_SESSION['user']->name]);
         }else
         {
             header('Location: ' . BASE_URL);
