@@ -32,10 +32,10 @@ class postController
                 redirect('/');
 
             } else if (input('type') === 'public') {
-                
+
                 $post->save();
                 
-                redirect('/');
+                // redirect('/');
             }
         } else {
             redirect(''); # si no se paso el dato tipo entoces se redirige a la pagina principal

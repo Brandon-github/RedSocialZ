@@ -1,0 +1,22 @@
+<div class="postUser">
+    <div>
+        {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid, post.user.email)} %}
+    </div>
+    <div class="user-data">
+        <div>
+            <span class="username">
+                {{post.user.nickname}}
+            </span>
+            <span class="date opacity:1">
+                {{fromNow(post.created_at)}}
+
+                {% if post.isSecret %}
+                    <i data-icon="lock"></i>
+                {% else %}
+                    <i data-icon="public"></i>
+                {% endif %}
+
+            </span>
+        </div>
+    </div>
+</div>

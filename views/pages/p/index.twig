@@ -4,6 +4,19 @@
 
 {% block content %}
 <div class="container has-top-margin">
-	{{post.user.name}}
+	<div class="box-container box">
+		{% include "@components/posts/user.twig" %}
+		
+		<p>
+			{{post.content}}
+		</p>
+
+		{% include "@components/posts/buttons.twig" %}
+
+	</div>
+	<div class="comments box-container box mg-top:lg">
+		<div>Comentarios: 0</div>
+		<hr>
+	</div>
 </div>
 {% endblock %}
