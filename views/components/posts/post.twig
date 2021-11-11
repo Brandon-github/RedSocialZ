@@ -45,7 +45,7 @@
     {% else %}
         <a href="{{BASE_URL}}p/{{hashid(post.id)}}">
             <p class="post-description">
-                {{post.content}}
+                {{litemoji(post.content)|raw}}
             </p>
         </a>
     {% endif %}

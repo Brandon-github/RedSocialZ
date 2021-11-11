@@ -1,6 +1,7 @@
 <?php
 
 use const config\HASH_ID_SALT;
+use LitEmoji\LitEmoji;
 
 require_once __DIR__ . '/../models/Post.php';
 
@@ -12,13 +13,14 @@ class postController
     }
     public function create()
     {
+        
         # verifica si tiene el parametro type
         if (input('type')) {
 
             # init para guardar el post
             $post = new Post();
             $post->user_id = $_SESSION['user']->id;
-            $post->content = input('content');
+            $post->content = LitEmoji::encodeShortcode(input('content'));
             $post->created_at = gmdate("Y-m-d H:i:s");
 
             # comprueba si la publicacion es secreta o no
@@ -35,7 +37,7 @@ class postController
 
                 $post->save();
                 
-                // redirect('/');
+                redirect('/');
             }
         } else {
             redirect(''); # si no se paso el dato tipo entoces se redirige a la pagina principal

@@ -8,7 +8,7 @@
 		{% include "@components/posts/user.twig" %}
 		
 		<p>
-			{{post.content}}
+			{{litemoji(post.content)|raw}}
 		</p>
 
 		{% include "@components/posts/buttons.twig" %}

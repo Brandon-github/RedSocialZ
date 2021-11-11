@@ -1,6 +1,7 @@
 <?php
 
 use const config\HASH_ID_SALT;
+use LitEmoji\LitEmoji;
 
 $input = new \Twig\TwigFunction('input', function ($name) {
     return input($name);
@@ -25,7 +26,12 @@ $hashid = new \Twig\TwigFunction('hashid', function ($id) {
     return $hashids->encode($id);
 });
 
+$litemoji = new \Twig\TwigFunction('litemoji', function ($content) {
+    return LitEmoji::encodeHtml($content);
+});
+
 $twig->addFunction($input);
 $twig->addFunction($fromnow);
 $twig->addFunction($userAvatar);
 $twig->addFunction($hashid);
+$twig->addFunction($litemoji);
