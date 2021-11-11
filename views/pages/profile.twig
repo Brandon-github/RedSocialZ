@@ -1,0 +1,38 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = 'User Profile' %}
+
+{% block content %}
+<div class="container has-top-margin">
+    <div class="user">
+        <div class="user__block">
+            <img src="" alt="" class="user__image">
+        </div>
+        <div class="user__block">
+            <div class="user__row">
+                <span class="user__name"></span>
+                <div class="user__buttons">
+                    <a href="/" class="user__button">Enviar mensaje</a>
+                    <a href="/" class="user__button">Enviar mensaje</a>
+                    <a href="/" class="user__button">Enviar mensaje</a>
+                    <button href="/" class="user__button user__button--menu">Enviar mensaje</button>
+                </div>
+            </div> 
+            <div class="user__socials">
+                <div class="user__social">
+                    <span class="user__posts">445</div>
+                    <p class="user__text">publicaciones</p>
+                </div>
+                <div class="user__social">
+                    <span class="user__followers">10.4m</div>
+                    <p class="user__text">Seguidores</p>
+                </div>
+                <div class="user__social">
+                    <span class="user__followed">214</div>
+                    <p class="user__followeds">Seguidos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
