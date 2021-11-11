@@ -1,5 +1,7 @@
 <?php
 
+use const config\HASH_ID_SALT;
+
 $input = new \Twig\TwigFunction('input', function ($name) {
     return input($name);
 });
@@ -18,6 +20,12 @@ $userAvatar = new \Twig\TwigFunction('userAvatar', function ($uuid, $email) {
     }
 });
 
+$hashid = new \Twig\TwigFunction('hashid', function ($id) {
+    $hashids = new Hashids(HASH_ID_SALT);
+    return $hashids->encode($id);
+});
+
 $twig->addFunction($input);
 $twig->addFunction($fromnow);
 $twig->addFunction($userAvatar);
+$twig->addFunction($hashid);

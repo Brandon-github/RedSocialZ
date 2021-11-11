@@ -64,9 +64,11 @@
             Desbloquear
         </button>
     {% else %}
-        <p class="post-description">
-            {{post.content}}
-        </p>
+        <a href="{{BASE_URL}}p/{{hashid(post.id)}}">
+            <p class="post-description">
+                {{post.content}}
+            </p>
+        </a>
     {% endif %}
 
     <hr>
