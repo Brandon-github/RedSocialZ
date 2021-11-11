@@ -7,6 +7,7 @@ class User
     private $username;
     private $email;
     private $password;
+    private $image;
     private $biography;
     public  $db;
 
@@ -141,6 +142,27 @@ class User
         return $this;
     }
 
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     public function save()
     {
         //Guardar usuario en la base de datos
@@ -187,4 +209,29 @@ class User
             $_SESSION['errors']['email'] = 'No encontramos ningun usuario con el email ' . $this->email;
         }
     }
+
+    //Funcion para actualizar datos del usuario
+    public function update(bool $image_exists)
+    {
+        $user = $_SESSION['user'];
+
+        //Comprueba si se va a actualizar la imagen
+        if($image_exists) // si existe la actualiza
+        {
+            $query = $this->db->query("UPDATE users SET name='{$this->name}', surname='{$this->surname}', nickname='{$this->username}', image_uuid='{$this->image}', email='{$this->email}', biography='{$this->biography}', updated_at=NOW() WHERE id=" . $user->id);
+        }
+        else // si no existe entonces no lo actualiza
+        {
+            $query = $this->db->query("UPDATE users SET name='{$this->name}', surname='{$this->surname}', nickname='{$this->username}', email='{$this->email}', biography='{$this->biography}', updated_at=NOW() WHERE id=" . $user->id);
+        }
+
+        if($this->db->errno == 0)
+        {
+            return $this->db->query("SELECT * FROM users WHERE id=$user->id")->fetch_object();
+        }else
+        {
+            return $this->db->errno;
+        }
+    }
+
 }

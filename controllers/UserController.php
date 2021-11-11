@@ -173,7 +173,9 @@ class userController
     {
         if(Helper::isUser())
         {
-            View::render('@pages/update.twig', ['user' => $_SESSION['user']]);
+            View::render('@pages/update.twig', ['user' => $_SESSION['user'], 'errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+            
+            unset($_SESSION['errors']);
         }
         else
         {
@@ -197,8 +199,51 @@ class userController
 
             if($image && ($image['type'] == 'image/jpeg' || $image['type'] == 'image/jpg' && $image['type'] == 'image/png'))
             {
-                echo "siu";
+                $unique_name = time() . $image['name'];
+
+                if(file_exists('./images/' .$_SESSION['user']->image_uuid) && $_SESSION['user']->image_uuid != 'default.jpg')
+                {
+                    unlink('./images/'.$_SESSION['user']->image_uuid);
+                }
+            
+                if (!move_uploaded_file(
+                    $_FILES['image']['tmp_name'],
+                    './images/' . $unique_name
+                ))
+
+                $user->setName($name);
+                $user->setSurname($surname);
+                $user->setUsername($username);
+                $user->setBiography($biography);
+                $user->setImage($unique_name);
+                $user->setEmail($email);
+                $query = $user->update(true);
             }
+            else
+            {
+                $user->setName($name);
+                $user->setSurname($surname);
+                $user->setUsername($username);
+                $user->setBiography($biography);
+                $user->setEmail($email);
+                $query = $user->update(false);
+            }
+
+            if(is_object($query))
+            {
+                $_SESSION['user'] = $query;
+                $_SESSION['errors']['false'] = '¡Datos actualizados correctamente!';
+            }
+            elseif(is_int($query) && $query == 1062)
+            {
+                $_SESSION['errors'][1062] = "El nombre de usuario o correo electrónico ya fueron registrados.";
+            }
+            else
+            {
+                $_SESSION['errors']['true'] = '¡Ups! ha ocurrido un error, por favor intentelo de nuevo más tarde.';
+            }
+
+            redirect('user/update');
 
         }
         else
