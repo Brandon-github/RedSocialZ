@@ -1,7 +1,8 @@
 <?php
 //Funciones extras
 
-define('BASE_URL', 'http://localhost:8080/');
+// define('BASE_URL', 'http://localhost:5050/');
+define('BASE_URL', 'http://localhost/');
 
 
 function sanitizeString($var, $connection)

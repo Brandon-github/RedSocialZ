@@ -1,7 +1,7 @@
 scripts:
   dev:
     desc: Inicia el servidor
-    cmd: php -S localhost:8080
+    cmd: php -S localhost:5050
   sass:
     desc: Compila sass a css
     cmd: sass --watch ./assets/scss:./assets/css --no-source-map --style=compressed
