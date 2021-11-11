@@ -25,6 +25,6 @@ class Post extends Orm {
         return Post::sql("SELECT * FROM :table ORDER BY created_at DESC");
     }
     protected function filterOut () {
-        $this->user = UserModel::retrieveByPK($this->user_id); # obtiene el usuario de cada post con el user_id
+        $this->user = UserModel::retrieveByPK(isset($this->user_id) ? $this->user_id : 1); # obtiene el usuario de cada post con el user_id
     }
 }
