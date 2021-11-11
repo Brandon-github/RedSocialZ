@@ -514,6 +514,7 @@ abstract class Orm
     public function getColumnNames ()
     {
         $conn = self::getConnection();
+        // $result = $conn->query(sprintf("DESCRIBE %s;", self::getTableName()));
         $result = $conn->query(sprintf("DESCRIBE %s.%s;", self::getDatabaseName(), self::getTableName()));
         
         if ($result === false)

@@ -34,7 +34,7 @@
 <div class="post">
     <div class="post-user">
         <div>
-            <img style="height: 34px; wegith: 50px" src={{BASE_URL}}images/{{post.user.image_uuid}}>
+            {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid, post.user.email)} %}
         </div>
         <div class="user-data">
             <div>
@@ -44,7 +44,7 @@
                 <span class="date opacity:1">
                     {{fromNow(post.created_at)}}
 
-                    {% if post.is_secret %}
+                    {% if post.isSecret %}
                         <i data-icon="lock"></i>
                     {% else %}
                         <i data-icon="public"></i>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    {% if post.is_secret %}
+    {% if post.isSecret %}
         <p class="post-description opacity:1">
             {{post.description}}
         </p>
@@ -71,13 +71,17 @@
 
     <hr>
     <div class="post-actions">
-        <button>
-            <i data-icon='favorite'></i>
-            6 Me gusta
+        <button class="{{post.liked ? 'text:secondary' : ''}}" onclick="api.like(event, '{{post.id}}')">
+            {% if post.liked %}
+                <i data-icon='favorite'></i>
+            {% else %}
+                <i data-icon='favorite_border'></i>
+            {% endif %}
+            <span>{{post.likes}}</span> Me gusta
         </button>
         <button>
             <i data-icon='question_answer'></i>
-            2 Comentarios   
+            0 Comentarios   
         </button>
         <button id="share">
             <i data-icon='share'></i>

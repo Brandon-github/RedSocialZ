@@ -5,6 +5,16 @@
 {% block content %}
 <div class="container has-top-margin">
 
+    <img style="max-width:200px" src="{{BASE_URL}}images/{{user.image_uuid}}">
+    <p>Nombre de usuario: @{{user.nickname}}</p>
+    <p>Nombre: {{user.name ~ ' ' ~ user.surname}}</p>
+    <p>Biografía: {{user.biography}}</p>
+    <p>Se unió el: {{user.created_at|striptags|slice(0, 10)}}</p>
+
+
+    <p class="text:center" style="color:red">{{ errors[1062] }}</p>
+    <p class="text:center" style="color:red">{{ errors.true }}</p>
+    <p class="text:center" style="color:green">{{ errors.false }}</p>
     <form enctype='multipart/form-data' method="POST" action="{{BASE_URL}}update" class="update">
         <h1>Actualizar datos</h1>
         <div class="grid:2 gap">
@@ -26,7 +36,7 @@
             </div>
             <div>
                 <label class="label">Biografía</label>
-                <textarea autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
+                <textarea style="height: 40px" autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
             </div>
             <div>
                 <label class="label">Correo electronico</label>
@@ -40,9 +50,6 @@
         </div>
         <hr>
 
-        
-        <p class="text:center" style="color:red">{{ errors[1602] }}</p>
-        <p class="text:center" style="color:red">{{ errors['validate'] }}</p>
     </form>
 </div>
 {% endblock %}

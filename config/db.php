@@ -7,7 +7,11 @@ class DB
     {
         //Los parametros de la conexión los pueden cambiar a su usuario de sql, yo puse uno que me
         //invente ya que el root me daba problemas
-        $db = new mysqli('198.7.62.150', 'frankalv_dev123', '8EKaTBVeapEZ321', 'frankalv_socialcube');
+        
+        //$db = new mysqli('localhost', 'root', 'root', 'SocialCube');
+
+        $db = new mysqli('ec2-3-88-114-41.compute-1.amazonaws.com', 'admin', 'Mysql@1234', 'SocialCube');
+        
         $db->query('SET NAMES utf8');
 
         if($db)
@@ -20,5 +24,8 @@ class DB
         }
     }
 }
+
+// conexcion a la base de datos mediante ORM
+Orm::useConnection(DB::connect(), 'SocialCube');
 
 ?>

@@ -33,9 +33,8 @@ CONSTRAINT pk_chats PRIMARY KEY(id)
 CREATE TABLE posts(
 id          int not null auto_increment,
 user_id     int not null,
-key_secret  varchar(255) not null,
-description TEXT not null,
-is_secret   int not null,
+key_secret  varchar(255),
+description TEXT,
 content     LONGTEXT not null,
 created_at  timestamp not null,
 updated_at  timestamp not null,
