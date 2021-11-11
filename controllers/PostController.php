@@ -65,4 +65,9 @@ class postController
             View::error404();
         }
     }
+
+    public function info()
+    {
+        View::render('@pages/post-info.twig');
+    }
 }

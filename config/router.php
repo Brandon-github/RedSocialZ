@@ -23,7 +23,9 @@ $router->post('/update', 'UserController@saveUpdate');
 $router->get('/new', 'PostController@form');
 $router->post('/new', 'PostController@create');
 
-$router->get('/p/{id}', 'postController@page');
+$router->get('/post/how-it-works', 'PostController@info');
+
+$router->get('/p/{id}', 'PostController@page');
 
 // error 404
 $router->set404(function () {
