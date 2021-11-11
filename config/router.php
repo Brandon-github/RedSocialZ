@@ -21,6 +21,7 @@ $router->post('/update', 'UserController@saveUpdate');
 
 // posts
 $router->get('/new', 'PostController@form');
+
 $router->post('/new', 'PostController@create');
 
 $router->get('/p/{id}', 'postController@page');

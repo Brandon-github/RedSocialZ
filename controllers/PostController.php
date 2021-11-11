@@ -26,9 +26,6 @@ class postController
     
                 $post->key_secret = input('secret');
                 $post->description = input('description');
-                $post->is_secret = 1;
-    
-                var_dump($post);
 
                 $post->save(); # guarda
 
@@ -36,10 +33,9 @@ class postController
 
             } else if (input('type') === 'public') {
                 
-                $post->is_secret = 0;
                 $post->save();
                 
-                redirect('');
+                redirect('/');
             }
         } else {
             redirect(''); # si no se paso el dato tipo entoces se redirige a la pagina principal
