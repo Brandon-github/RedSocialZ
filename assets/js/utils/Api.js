@@ -18,7 +18,7 @@ class Api {
         }
 
         // fetch like api
-        fetch(`/api/like?id=${id}`);
+        fetch(`${baseUrl}/api/like?id=${id}`);
     }
 }
 
