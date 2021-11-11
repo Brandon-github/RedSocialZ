@@ -71,13 +71,17 @@
 
     <hr>
     <div class="post-actions">
-        <button>
-            <i data-icon='favorite'></i>
-            6 Me gusta
+        <button class="{{post.liked ? 'text:secondary' : ''}}" onclick="api.like(event, '{{post.id}}')">
+            {% if post.liked %}
+                <i data-icon='favorite'></i>
+            {% else %}
+                <i data-icon='favorite_border'></i>
+            {% endif %}
+            <span>{{post.likes}}</span> Me gusta
         </button>
         <button>
             <i data-icon='question_answer'></i>
-            2 Comentarios   
+            0 Comentarios   
         </button>
         <button id="share">
             <i data-icon='share'></i>

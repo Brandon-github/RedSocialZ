@@ -28,6 +28,8 @@ $router->get('/post/how-it-works', 'PostController@info');
 
 $router->get('/p/{id}', 'PostController@page');
 
+$router->get('/api/like', 'ApiController@like');
+
 // error 404
 $router->set404(function () {
     View::error404();
