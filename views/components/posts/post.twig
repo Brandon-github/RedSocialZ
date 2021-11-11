@@ -34,7 +34,7 @@
 <div class="post">
     <div class="post-user">
         <div>
-            {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid)} %}
+            {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid, post.user.email)} %}
         </div>
         <div class="user-data">
             <div>
@@ -44,7 +44,7 @@
                 <span class="date opacity:1">
                     {{fromNow(post.created_at)}}
 
-                    {% if post.is_secret %}
+                    {% if post.isSecret %}
                         <i data-icon="lock"></i>
                     {% else %}
                         <i data-icon="public"></i>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    {% if post.is_secret %}
+    {% if post.isSecret %}
         <p class="post-description opacity:1">
             {{post.description}}
         </p>
