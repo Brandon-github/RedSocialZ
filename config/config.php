@@ -1,7 +1,7 @@
 <?php
 namespace config;
 
-const VERSION = '1.0-dev';
+const VERSION = '1.2-dev';
 const DEVELOPMENT = TRUE;
 
 const NAME_SEPARATOR = ' | ';

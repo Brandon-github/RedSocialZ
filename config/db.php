@@ -25,4 +25,7 @@ class DB
     }
 }
 
+// conexcion a la base de datos mediante ORM
+Orm::useConnection(DB::connect(), 'SocialCube');
+
 ?>

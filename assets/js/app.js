@@ -7,7 +7,8 @@ import 'https://unpkg.com/@swup/forms-plugin@1.1.1/dist/SwupFormsPlugin.min.js';
 import LazyImages from './utils/LazyImages.js';
 import Navbar from './utils/navbar.js';
 import { router } from './routes.js';
-
+import Api from './utils/Api.js';
+import global from './utils/global.js';
 
 // swup init
 const swup = new Swup({
@@ -26,6 +27,8 @@ const lazyImages = new LazyImages();
 lazyImages.start(); // lazy load de imagenes
 Navbar.checkActiveLinks();
 router.run();
+
+global('api', new Api);
 
 MicroModal.init(); // modal init
 
