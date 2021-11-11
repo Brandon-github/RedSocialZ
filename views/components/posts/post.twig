@@ -34,7 +34,7 @@
 <div class="post">
     <div class="post-user">
         <div>
-            <img style="height: 34px; wegith: 50px" src={{BASE_URL}}images/{{post.user.image_uuid}}>
+            {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid)} %}
         </div>
         <div class="user-data">
             <div>
