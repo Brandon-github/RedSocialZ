@@ -30,6 +30,7 @@ $router->get('/p/{id}', 'PostController@page');
 
 $router->get('/api/like', 'ApiController@like');
 $router->post('/api/unlock', 'ApiController@unlock');
+$router->get('/api/content', 'ApiController@content');
 
 // error 404
 $router->set404(function () {

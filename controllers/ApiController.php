@@ -59,4 +59,17 @@ class ApiController {
             echo json_encode(['unlocked' => false]);
         }
     }
+
+    public function content() {
+        $limit = input('limit');
+        $offset = input('offset');
+        $posts = Post::getAll($limit, $offset);
+
+        header('Content-type: application/json');
+
+        echo json_encode([
+            'content' => View::renderReturn('@pages/api/posts.twig', ['posts' => $posts]),
+            'next' => count($posts) > 0 ? true : false
+        ]);
+    }
 }

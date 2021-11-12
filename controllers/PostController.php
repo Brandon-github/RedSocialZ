@@ -1,7 +1,6 @@
 <?php
 
 use const config\HASH_ID_SALT;
-use LitEmoji\LitEmoji;
 
 function protegido() {
     if(!isset($_SESSION['user'])){
@@ -26,7 +25,7 @@ class postController
             # init para guardar el post
             $post = new Post();
             $post->user_id = $_SESSION['user']->id;
-            $post->content = LitEmoji::encodeShortcode(input('content'));
+            $post->content = input('content');
             $post->created_at = gmdate("Y-m-d H:i:s");
 
             # comprueba si la publicacion es secreta o no

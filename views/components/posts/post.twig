@@ -1,50 +1,21 @@
-<div class="modal" id="unlock" aria-hidden="true">
-    <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
-        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
-            <header class="modal-header">
-                <h2 class="modal-title" id="unlock-title">Desbloquear</h2> 
-                <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
-            </header>
-
-            <div class="modal-content" id="unlock-content">
-                <p id="unlock-description"></p>
-                <div class="field">
-                    <input id="unlock-key" type="text" class="input" placeholder="Escriba la contraseña">
-                </div>
-            </div>
-            
-            <footer class="modal__footer"> 
-                <button class="button is-primary" onclick="api.unlock()">
-                    <i data-icon="lock_open"></i>
-                    Continuar
-                </button>
-                <button class="button is-danger" data-micromodal-close="" aria-label="Close this dialog window">
-                    <i data-icon="cancel"></i>
-                    Cerrar
-                </button>
-            </footer>
-        </div>
-    </div>
-</div>
-
 <div class="post">
     {% include "@components/posts/user.twig" %}
 
     {# Muestra el contenido si el usuario desbloqueo el post o es el autor del post #}
-    {% if post.isSecret and not post.unlocked and not post.user.id == currentUser.id  %}
-        <p class="post-description opacity:1">
-            {{post.description}}
-        </p>
-        <button class="post-lock" onclick="unlock('{{post.description}}', '{{post.id}}');">
-            <i data-icon="lock"></i>
-            Desbloquear
-        </button>
-    {% else %}
+    {% if not post.isSecret or post.unlocked or post.user.id == currentUser.id  %}
         <a href="{{BASE_URL}}p/{{hashid(post.id)}}">
             <p class="post-description">
                 {{litemoji(post.content)|raw}}
             </p>
         </a>
+    {% else %}
+        <p class="post-description opacity:1">
+            {{litemoji(post.description)|raw}}
+        </p>
+        <button class="post-lock" onclick="unlock('{{litemoji(post.description)|raw}}', '{{post.id}}');">
+            <i data-icon="lock"></i>
+            Desbloquear
+        </button>
     {% endif %}
     
     {% include "@components/posts/buttons.twig" %}

@@ -1,5 +1,6 @@
 import store from "./Store.js";
-import { swup } from "../swup.js"
+import { swup } from "../swup.js";
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 
 class Api {
     like(event, id) {
@@ -34,6 +35,7 @@ class Api {
         }).then(r => r.json());
 
         if (response.unlocked) {
+            confetti();
             swup.loadPage({url: `${baseUrl}p/${response.url}`})
         } else {
             alert('La contraseña es incorrecta, intentelo de nuevo');
