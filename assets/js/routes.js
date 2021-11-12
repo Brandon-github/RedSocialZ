@@ -31,5 +31,8 @@ router.onPage('/', () => {
 router.onPage('/new', () => {
     autosize(document.querySelectorAll('textarea'));
 })
+router.onPage('/user/update', () => {
+    autosize(document.querySelectorAll('textarea'));
+})
 
 export { router };
