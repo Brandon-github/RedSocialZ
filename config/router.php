@@ -19,6 +19,8 @@ $router->get('/user/update', 'UserController@update');
 
 $router->post('/update', 'UserController@saveUpdate');
 
+$router->get('/user/info', 'UserController@showInfo');
+
 // posts
 $router->get('/new', 'PostController@form');
 

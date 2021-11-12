@@ -251,4 +251,18 @@ class userController
             redirect('');
         }
     }
+
+    public function showInfo()
+    {
+        if(Helper::isUser())
+        {
+            View::render('@pages/profile.twig', ['user' => $_SESSION['user'], 'errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+                
+            unset($_SESSION['errors']);
+        }
+        else
+        {
+            redirect('');
+        } 
+    }
 }
