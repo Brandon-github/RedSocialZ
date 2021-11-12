@@ -30,7 +30,8 @@
 <div class="post">
     {% include "@components/posts/user.twig" %}
 
-    {% if post.isSecret and not post.unlocked  %}
+    {# Muestra el contenido si el usuario desbloqueo el post o es el autor del post #}
+    {% if post.isSecret and not post.unlocked and not post.user.id == currentUser.id  %}
         <p class="post-description opacity:1">
             {{post.description}}
         </p>
