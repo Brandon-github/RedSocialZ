@@ -63,3 +63,11 @@ CONSTRAINT pk_likes PRIMARY KEY(id),
 CONSTRAINT fk_likes_posts FOREIGN KEY(post_id) REFERENCES posts(id),
 CONSTRAINT fk_likes_users FOREIGN KEY(user_id) REFERENCES users(id)
 );
+
+CREATE TABLE reset_password_token(
+id              int not null AUTO_INCREMENT,
+token           INT not null,
+expired_at      TIMESTAMP not null,
+user_email      varchar(30) not null,
+CONSTRAINT pk_reset_password_token PRIMARY KEY(id)
+);
