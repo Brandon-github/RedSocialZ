@@ -67,7 +67,7 @@ CREATE TABLE attempts(
     id          INT NOT NULL AUTO_INCREMENT,
     post_id     INT NOT NULL,
     user_id     INT NOT NULL,
-    is_correct  BOOLEAN NOT NULL,
+    unlocked  BOOLEAN NOT NULL,
     CONSTRAINT pk_attempt PRIMARY KEY(id),
     CONSTRAINT attempt_post FOREIGN KEY(post_id) REFERENCES posts(id),
     CONSTRAINT attempt_user FOREIGN KEY(user_id) REFERENCES users(id)

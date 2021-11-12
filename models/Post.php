@@ -28,6 +28,11 @@ class Post extends Orm {
         if (isset($this->key_secret)) {
             # verifica si la publicacion es secreta
             $this->isSecret = $this->key_secret ? true : false;
+        
+            # si el post es secreto comprueba si este ya fue desbloqueado por el usuario
+            if ($this->isSecret) {
+                $this->unlocked = Attempt::isUnlocked($this->id);
+            }
         }
 
         if (isset($this->id)) {

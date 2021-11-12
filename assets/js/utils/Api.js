@@ -1,3 +1,6 @@
+import store from "./Store.js";
+import { swup } from "../swup.js"
+
 class Api {
     like(event, id) {
         // selecciona los contenedores
@@ -7,7 +10,7 @@ class Api {
         const liked = iconContainer.dataset.icon === 'favorite' ? true : false;
         const likes = parseInt(likesContainer.textContent);
 
-        if(liked) {
+        if (liked) {
             event.target.classList.remove('text:secondary');
             iconContainer.dataset.icon = 'favorite_border';
             likesContainer.textContent = likes - 1;
@@ -18,7 +21,23 @@ class Api {
         }
 
         // fetch like api
-        fetch(`${baseUrl}/api/like?id=${id}`);
+        fetch(`${baseUrl}api/like?id=${id}`);
+    }
+    async unlock() {
+        const id = store.get('unlock').id;
+        const key = document.getElementById('unlock-key').value;
+
+        const response = await fetch(`${baseUrl}api/unlock`, {
+            method: 'POST',
+            body: JSON.stringify({ id, key }),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(r => r.json());
+
+        if (response.unlocked) {
+            swup.loadPage({url: `${baseUrl}p/${response.url}`})
+        } else {
+            alert('La contraseña es incorrecta, intentelo de nuevo');
+        }
     }
 }
 

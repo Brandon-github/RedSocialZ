@@ -1,24 +1,20 @@
-<div class="modal" id="modal-1" aria-hidden="true">
+<div class="modal" id="unlock" aria-hidden="true">
     <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
-        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
             <header class="modal-header">
-                <h2 class="modal-title" id="modal-1-title">Desbloquear</h2> 
+                <h2 class="modal-title" id="unlock-title">Desbloquear</h2> 
                 <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
             </header>
 
-            <div class="modal-content" id="modal-1-content">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit cum iure saepe!
-                </p>
-                <form>
-                    <div class="field">
-                        <input type="text" class="input" placeholder="Escriba la contraseña">
-                    </div>
-                </form>
+            <div class="modal-content" id="unlock-content">
+                <p id="unlock-description"></p>
+                <div class="field">
+                    <input id="unlock-key" type="text" class="input" placeholder="Escriba la contraseña">
+                </div>
             </div>
             
             <footer class="modal__footer"> 
-                <button class="button is-primary">
+                <button class="button is-primary" onclick="api.unlock()">
                     <i data-icon="lock_open"></i>
                     Continuar
                 </button>
@@ -34,11 +30,11 @@
 <div class="post">
     {% include "@components/posts/user.twig" %}
 
-    {% if post.isSecret %}
+    {% if post.isSecret and not post.unlocked  %}
         <p class="post-description opacity:1">
             {{post.description}}
         </p>
-        <button class="post-lock" onclick="MicroModal.show('modal-1');">
+        <button class="post-lock" onclick="unlock('{{post.description}}', '{{post.id}}');">
             <i data-icon="lock"></i>
             Desbloquear
         </button>

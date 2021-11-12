@@ -11,11 +11,17 @@
                 {{fromNow(post.created_at)}}
 
                 {% if post.isSecret %}
-                    <i data-icon="lock"></i>
+
+                    {# comprueba si esta desbloqueado #}
+                    {% if post.unlocked %}
+                        <i data-icon="lock_open" class="text:success"></i>
+                    {% else %}
+                        <i data-icon="lock"></i>
+                    {% endif %}
+                
                 {% else %}
                     <i data-icon="public"></i>
                 {% endif %}
-
             </span>
         </div>
     </div>
