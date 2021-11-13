@@ -51,4 +51,5 @@ class Post extends Orm {
             $this->liked = Like::sql("SELECT COUNT(*) as liked FROM likes WHERE post_id = {$this->id} AND user_id = {$_SESSION['user']->id};", Orm::FETCH_ONE)->liked;
         }
     }
+
 }
