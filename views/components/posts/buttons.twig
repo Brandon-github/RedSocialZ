@@ -1,0 +1,19 @@
+<hr>
+<div class="postButtons">
+    <button class="{{post.liked ? 'text:secondary' : ''}}" onclick="api.like(event, '{{post.id}}')">
+        {% if post.liked %}
+        <i data-icon='favorite'></i>
+        {% else %}
+        <i data-icon='favorite_border'></i>
+        {% endif %}
+        <span>{{post.likes}}</span> Me gusta
+    </button>
+    <button>
+        <i data-icon='question_answer'></i>
+        0 Comentarios
+    </button>
+    <button class="share-post" data-url='{{BASE_URL}}p/{{hashid(post.id)}}'>
+        <i data-icon='share'></i>
+        Compartir
+    </button>
+</div>

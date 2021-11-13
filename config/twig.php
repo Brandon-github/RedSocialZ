@@ -19,5 +19,6 @@ $twig = new \Twig\Environment($loader, [
 
 $twig->addGlobal('appVersion', VERSION);
 $twig->addGlobal('BASE_URL', BASE_URL);
+$twig->addGlobal('currentUser', isset($_SESSION['user']) ? $_SESSION['user'] : false);
 
 require_once __DIR__ . '/twig/functions.php';

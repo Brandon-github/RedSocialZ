@@ -1,5 +1,7 @@
 <?php
 
+use LitEmoji\LitEmoji;
+
 Class UserModel extends Orm {
     protected static $table = 'users';
 }
@@ -10,6 +12,11 @@ class Post extends Orm {
     #filtro
     protected function filterIn_dates($data) {
         $data['updated_at'] = gmdate("Y-m-d H:i:s");
+
+        // filtro de emojis
+        $data['content'] = LitEmoji::encodeShortcode($data['content']);
+        $data['description'] = LitEmoji::encodeShortcode($data['description']);
+        $data['key_secret'] = LitEmoji::encodeShortcode($data['key_secret']);
         
         # hash de la contraseña
         // $data['key_secret'] = password_hash($this->getConnection()->real_escape_string($data['key_secret']), PASSWORD_BCRYPT);
@@ -17,9 +24,10 @@ class Post extends Orm {
         return $data;
     }
     
-    static function getAll($limit = 10) {
+    static function getAll($limit = 5, $offset = 0) {
+
         # all posts
-        return Post::sql("SELECT * FROM :table ORDER BY created_at DESC");
+        return Post::sql("SELECT * FROM :table ORDER BY created_at DESC LIMIT {$offset}, {$limit}");
     }
 
     protected function filterOut () {
@@ -28,14 +36,20 @@ class Post extends Orm {
         if (isset($this->key_secret)) {
             # verifica si la publicacion es secreta
             $this->isSecret = $this->key_secret ? true : false;
+        
+            # si el post es secreto comprueba si este ya fue desbloqueado por el usuario
+            if ($this->isSecret) {
+                $this->unlocked = Attempt::isUnlocked($this->id);
+            }
         }
 
         if (isset($this->id)) {
             # cuenta los likes
-            $this->likes = $this->sql("SELECT COUNT(*) as total FROM likes WHERE post_id = {$this->id}", Orm::FETCH_ONE)->total;
+            $this->likes = Like::sql("SELECT COUNT(*) as total FROM `likes` WHERE post_id = 10;", Orm::FETCH_ONE)->total;
 
             # comprueba si el usuario de la sesion le dio like
-            $this->liked = $this->sql("SELECT COUNT(*) as liked FROM likes WHERE post_id = {$this->id} AND user_id = {$_SESSION['user']->id};", Orm::FETCH_ONE)->liked;
+            $this->liked = Like::sql("SELECT COUNT(*) as liked FROM likes WHERE post_id = {$this->id} AND user_id = {$_SESSION['user']->id};", Orm::FETCH_ONE)->liked;
         }
     }
+
 }

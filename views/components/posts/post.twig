@@ -1,91 +1,22 @@
-{# <div class="modal" id="modal-1" aria-hidden="true">
-    <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
-        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-            <header class="modal-header">
-                <h2 class="modal-title" id="modal-1-title">Desbloquear</h2> 
-                <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
-            </header>
-
-            <div class="modal-content" id="modal-1-content">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit cum iure saepe!
-                </p>
-                <form>
-                    <div class="field">
-                        <input type="text" class="input" placeholder="Escriba la contraseña">
-                    </div>
-                </form>
-            </div>
-            
-            <footer class="modal__footer"> 
-                <button class="button is-primary">
-                    <i data-icon="lock_open"></i>
-                    Continuar
-                </button>
-                <button class="button is-danger" data-micromodal-close="" aria-label="Close this dialog window">
-                    <i data-icon="cancel"></i>
-                    Cerrar
-                </button>
-            </footer>
-        </div>
-    </div>
-</div> #}
-
 <div class="post">
-    <div class="post-user">
-        <div>
-            {% include "@components/images/circle.twig" with {src: userAvatar(post.user.image_uuid, post.user.email)} %}
-        </div>
-        <div class="user-data">
-            <div>
-                <span class="username">
-                    {{post.user.nickname}}
-                </span>
-                <span class="date opacity:1">
-                    {{fromNow(post.created_at)}}
+    {% include "@components/posts/user.twig" %}
 
-                    {% if post.isSecret %}
-                        <i data-icon="lock"></i>
-                    {% else %}
-                        <i data-icon="public"></i>
-                    {% endif %}
-
-                </span>
-            </div>
-        </div>
-    </div>
-
-    {% if post.isSecret %}
+    {# Muestra el contenido si el usuario desbloqueo el post o es el autor del post #}
+    {% if not post.isSecret or post.unlocked or post.user.id == currentUser.id  %}
+        <a href="{{BASE_URL}}p/{{hashid(post.id)}}">
+            <p class="post-description">
+                {{litemoji(post.content)|raw}}
+            </p>
+        </a>
+    {% else %}
         <p class="post-description opacity:1">
-            {{post.description}}
+            {{litemoji(post.description)|raw}}
         </p>
-        <button class="post-lock" onclick="MicroModal.show('modal-1');">
+        <button class="post-lock" onclick="unlock('{{litemoji(post.description)|raw}}', '{{post.id}}');">
             <i data-icon="lock"></i>
             Desbloquear
         </button>
-    {% else %}
-        <p class="post-description">
-            {{post.content}}
-        </p>
     {% endif %}
-
-    <hr>
-    <div class="post-actions">
-        <button class="{{post.liked ? 'text:secondary' : ''}}" onclick="api.like(event, '{{post.id}}')">
-            {% if post.liked %}
-                <i data-icon='favorite'></i>
-            {% else %}
-                <i data-icon='favorite_border'></i>
-            {% endif %}
-            <span>{{post.likes}}</span> Me gusta
-        </button>
-        <button>
-            <i data-icon='question_answer'></i>
-            0 Comentarios   
-        </button>
-        <button id="share">
-            <i data-icon='share'></i>
-            Compartir
-        </button>
-    </div>
+    
+    {% include "@components/posts/buttons.twig" %}
 </div>

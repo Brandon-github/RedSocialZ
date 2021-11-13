@@ -4,52 +4,67 @@
 
 {% block content %}
 <div class="container has-top-margin">
-
-    <img style="max-width:200px" src="{{BASE_URL}}images/{{user.image_uuid}}">
-    <p>Nombre de usuario: @{{user.nickname}}</p>
-    <p>Nombre: {{user.name ~ ' ' ~ user.surname}}</p>
-    <p>Biografía: {{user.biography}}</p>
-    <p>Se unió el: {{user.created_at|striptags|slice(0, 10)}}</p>
-
-
-    <p class="text:center" style="color:red">{{ errors[1062] }}</p>
-    <p class="text:center" style="color:red">{{ errors.true }}</p>
-    <p class="text:center" style="color:green">{{ errors.false }}</p>
-    <form enctype='multipart/form-data' method="POST" action="{{BASE_URL}}update" class="update">
-        <h1>Actualizar datos</h1>
-        <div class="grid:2 gap">
+    <div class="box-container">
+        <div class="box settingUser">
             <div>
-                <label class="label">Nombre</label>
-                <input autocomplete="off" value="{{ user.name }}" name="name" type="text" class="input">
+                {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
             </div>
             <div>
-                <label class="label">Apellidos</label>
-                <input autocomplete="off" value="{{user.surname}}" name="surname" type="text" class="input">
-            </div>
-            <div>
-                <label class="label">Nombre de usuario</label>
-                <input autocomplete="off" value="{{user.nickname}}" name="username" type="text" class="input">
-            </div>
-            <div>
-                <label class="label">Foto de perfil</label>
-                <input name="image" type="file" class="input">
-            </div>
-            <div>
-                <label class="label">Biografía</label>
-                <textarea style="height: 40px" autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
-            </div>
-            <div>
-                <label class="label">Correo electronico</label>
-                <input name="email"  value="{{user.email}}" type="email" class="input is-text">
+                <h3>
+                    {{user.name ~ ' ' ~ user.surname}}
+                </h3>
+                <p class="settingUser-username">@{{user.nickname}}</p>
+                <p>{{user.biography}}</p>
+                <span class="settingUser-date opacity:1">
+                    Se unió  {{fromNow(user.created_at)}}
+                </span>
             </div>
         </div>
-        <div class="field mg-top:lg">
-            <button class="button is-primary is-fullwidth" type="submit">
-                <i data-icon='&#xe174'></i> Guardar cambios
-            </button>
-        </div>
-        <hr>
 
-    </form>
+        <div class="box mg-top:lg">
+            <p class="text:center text:danger">{{ errors[1062] }}</p>
+            <p class="text:center text:danger">{{ errors.true }}</p>
+            <p class="text:center text:success">{{ errors.false }}</p>
+            
+            <form enctype='multipart/form-data' method="POST" action="{{BASE_URL}}update" class="update">
+                <h1>Actualizar datos</h1>
+                <div class="grid:2 gap">
+                    <div>
+                        <label class="label">Nombre</label>
+                        <input autocomplete="off" value="{{ user.name }}" name="name" type="text" class="input">
+                    </div>
+                    <div>
+                        <label class="label">Apellidos</label>
+                        <input autocomplete="off" value="{{user.surname}}" name="surname" type="text" class="input">
+                    </div>
+                    <div>
+                        <label class="label">Nombre de usuario</label>
+                        <input autocomplete="off" value="{{user.nickname}}" name="username" type="text" class="input">
+                    </div>
+                    <div>
+                        <label class="label">Foto de perfil</label>
+                        <input name="image" type="file" class="input is-text">
+                    </div>
+                </div>
+                <div class="field mg-top">
+                    <label class="label">Correo electronico</label>
+                    <input name="email"  value="{{user.email}}" type="email" class="input is-text">
+                </div>
+                <div class="field">
+                    <label class="label">Biografía</label>
+                    <textarea style="height: 40px" autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
+                </div>
+                <div class="field mg-top:lg">
+                    <button class="button is-primary is-fullwidth" type="submit">
+                        <i data-icon='&#xe174'></i> Guardar cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
 </div>
 {% endblock %}

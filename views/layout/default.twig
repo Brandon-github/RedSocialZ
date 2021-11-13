@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{BASE_URL}}/assets/css/main.css?v={{appVersion}}">
+    <script>window['baseUrl'] = '{{BASE_URL}}'</script>
 </head>
 
 <body>
@@ -23,6 +24,7 @@
         {% block content %}{% endblock %}
 
     </main>
-    <script type="module" src="{{BASE_URL}}assets/js/app.js?v={{appVersion}}"></script>
+    {# <script type="module" src="{{BASE_URL}}assets/js/app.js?v={{appVersion}}"></script> #}
+    <script src="{{BASE_URL}}assets/js/app.c.js?v={{appVersion}}"></script>
 </body>
 </html>
