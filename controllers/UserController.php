@@ -182,7 +182,7 @@ class userController
 
             unset($_SESSION['errors']);
         } else {
-            redirect('');
+            redirect('login');
         }
     }
 
@@ -281,6 +281,7 @@ class userController
 
                     //Content
 
+                    $url = BASE_URL . 'form/recover-password';
                     $mail->isHTML(true);
                     $mail->Subject = "[SocialCube] reestablecer contraseña";
                     $mail->Body    = "
@@ -288,7 +289,7 @@ class userController
                         <hr>
                         <h3 style='font-size: 40px'>Tu código es: $token</h3>
                         <hr>
-                        <b>Si no usas este código dentro de las siguientes 24 horas expirará.</b>
+                        <b>Si no usas este código dentro de las siguientes 24 horas expirará. Para obtener un nuevo código visita $url</b>
                         
                         <h2>De parte de: SocialCube :)</h2>
                         ";

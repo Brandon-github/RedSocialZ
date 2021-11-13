@@ -61,8 +61,8 @@ class Token
 
         if($query->num_rows == 1)
         {
-            return $query->fetch_object();
             $this->db->query("DELETE FROM reset_password_token WHERE token = {$this->token}");
+            return $query->fetch_object();
         }
         else
         {
