@@ -2,6 +2,9 @@ scripts:
   dev:
     desc: Inicia el servidor
     cmd: php -S localhost:5050
+  js:
+    desc: Crea el bundle de JavaScript
+    cmd: deno bundle ./assets/js/app.js ./assets/js/app.c.js --watch
   sass:
     desc: Compila sass a css
     cmd: sass --watch ./assets/scss:./assets/css --no-source-map --style=compressed
