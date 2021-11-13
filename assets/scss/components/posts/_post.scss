@@ -15,31 +15,6 @@
         margin-bottom: $margin;
     }
 
-    &-user {
-        display: grid;
-        grid-template-columns: 40px 1fr;
-        gap: 0.5rem;
-        margin-bottom: $margin;
-        
-        & .user-data {
-            @include center-y;
-            height: 100%;
-        }
-
-        & .photo {
-            border-radius: $radius-full;
-        }
-
-        & .username {
-            display: block;
-            line-height: 0.6rem;
-        }
-        
-        & .date {
-            font-size: 0.8rem;
-        }
-    }
-
     &-lock {
         display: block;
         width: 100%;
@@ -51,12 +26,6 @@
         text-align: center;
     }
 
-    &-actions {
-        display: grid;
-        font-size: 0.9rem;
-        @include col(1 1 1);
-    }
-
     &-share {
         display: grid;
         gap: $margin;
@@ -64,6 +33,9 @@
         margin-bottom: $margin-sm;
         a {
             display: block;
+        }
+        button {
+            text-align: start;
         }
     }
 }

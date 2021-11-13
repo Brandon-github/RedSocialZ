@@ -1,20 +1,26 @@
 {% extends '@layout/default.twig' %}
 
+{% set viewNav = 'false' %}
 {% set title = 'Error 404' %}
 
 {% block content %}
+<style>
+    body {
+        background-image: url('{{BASE_URL}}assets/media/images/stars.svg');
+    }
+</style>
 <div class="container has-top-margin">
-    <div class="e404 text:center">
+    <div class="e404">
         <h1 class="e404-title">
             404
         </h1>
         <p class="e404-subtitle">
             Estás orbitando por páginas desconocidas
         </p>
-        <br>
         <div class="align:center">
-            <a class="button is-primary" href="{{BASE_URL}}">Volver a tierra</a>
+            <a class="button is-primary" href="/">Volver a tierra</a>
         </div>
+        <img src="{{BASE_URL}}assets/media/images/astronaut.svg" class="astronaut" />
     </div>
 </div>
 

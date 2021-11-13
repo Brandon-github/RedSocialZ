@@ -234,4 +234,41 @@ class User
         }
     }
 
+    public function confirm_email()
+    {
+        $query = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+
+        if($query->num_rows == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function reset_password()
+    {
+        $password = $this->getPassword();
+        $query = $this->db->query("UPDATE users SET password='$password' WHERE email='{$this->email}'");
+
+        if($query)
+        {
+            $query = $this->db->query("SELECT * FROM users WHERE email='{$this->email}'");
+
+            return $query->fetch_object();
+        }
+        else
+        {
+            return false;
+        }
+    
+    }
+
+    public function __destruct()
+    {
+        $this->db->close();
+    }
+
 }

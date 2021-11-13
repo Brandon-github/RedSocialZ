@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eed207b9229763795b5a63815ce58729",
+    "content-hash": "0076bc6b07e985d64a58976715f073da",
     "packages": [
         {
             "name": "bramus/router",
@@ -56,6 +56,48 @@
                 "source": "https://github.com/bramus/router/tree/1.6"
             },
             "time": "2021-07-23T09:48:14+00:00"
+        },
+        {
+            "name": "elvanto/litemoji",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elvanto/litemoji.git",
+                "reference": "e70a2b72e4390e06d487810b7d784ac278dfbcb6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elvanto/litemoji/zipball/e70a2b72e4390e06d487810b7d784ac278dfbcb6",
+                "reference": "e70a2b72e4390e06d487810b7d784ac278dfbcb6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "milesj/emojibase": "6.1.*",
+                "phpunit/phpunit": "9.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LitEmoji\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP library simplifying the conversion of unicode, HTML and shortcode emoji.",
+            "keywords": [
+                "emoji",
+                "php-emoji"
+            ],
+            "support": {
+                "issues": "https://github.com/elvanto/litemoji/issues",
+                "source": "https://github.com/elvanto/litemoji/tree/4.0.2"
+            },
+            "time": "2021-10-05T22:30:33+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
