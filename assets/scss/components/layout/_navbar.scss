@@ -48,7 +48,9 @@ $navbar-bg: $secondary-bg;
     @include to(md) {
         margin-right: 0;
         margin-left: 0;
+    }
 
+    @include to(lg) {
         .nav-item span {
             display: none;
         }

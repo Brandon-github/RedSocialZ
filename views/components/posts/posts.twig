@@ -1,4 +1,32 @@
-<div class="posts gap">
+<div class="modal" id="unlock" aria-hidden="true">
+    <div class="modal-overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
+            <header class="modal-header">
+                <h2 class="modal-title" id="unlock-title">Desbloquear</h2> 
+                <button class="modal-close" aria-label="Close modal" data-micromodal-close=""></button>
+            </header>
+
+            <div class="modal-content" id="unlock-content">
+                <p id="unlock-description"></p>
+                <div class="field">
+                    <input id="unlock-key" type="text" class="input" placeholder="Escriba la contraseña">
+                </div>
+            </div>
+            
+            <footer class="modal__footer"> 
+                <button class="button is-primary" onclick="api.unlock()">
+                    <i data-icon="lock_open"></i>
+                    Continuar
+                </button>
+                <button class="button is-danger" data-micromodal-close="" aria-label="Close this dialog window">
+                    <i data-icon="cancel"></i>
+                    Cerrar
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>
+<div class="posts gap" id="posts-container">
     {% for post in posts %}
         {% include '@components/posts/post.twig' %}
     {% endfor %}
@@ -8,3 +36,4 @@
         </div>
     {% endif %}
 </div>
+{% include '@components/images/loading.twig' %}

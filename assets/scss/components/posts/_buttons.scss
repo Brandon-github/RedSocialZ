@@ -1,0 +1,5 @@
+.postButtons {
+    display: grid;
+    font-size: 0.9rem;
+    @include col(1 1 1);
+}

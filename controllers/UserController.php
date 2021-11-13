@@ -208,7 +208,7 @@ class userController
 
                 if (!move_uploaded_file(
                     $_FILES['image']['tmp_name'],
-                    './images/' . $unique_name
+                    __DIR__ .  '/../images/' . $unique_name
                 ))
 
                 $user->setName($name);
