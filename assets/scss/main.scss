@@ -23,15 +23,22 @@
 
 // paginas
 @import './pages/login';
+<<<<<<< HEAD
 @import './pages/info';
+=======
+@import './pages/setting';
+>>>>>>> db50a2bd4cc4bfb70858722f50053c0398965497
 
 // layout components
 @import './components/layout/navbar';
+@import './components/layout/error404';
 
 // auth components
 @import './components/auth/register';
 
 @import './components/posts/post';
+@import './components/posts/user';
+@import './components/posts/buttons';
 
 @import './utils/utilities';
 @import './base/icons';
@@ -78,4 +85,16 @@ html.is-animating .transition-fade {
     height: 0.2rem;
     background-color: $primary-color;
     z-index: 10000;
+}
+
+.box-container {
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box {
+    padding: $padding-lg;
+    background-color: $secondary-bg;
+    border-radius: $radius-sm;
 }
