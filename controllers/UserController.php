@@ -190,6 +190,7 @@ class userController
     {
         //Validar usuario y redireccion
         if (Helper::isUser() && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/update') {
+            //Objeto para escapar caracteres
             $user = new User();
 
             $name = !empty($_POST["name"]) ? sanitizeString($_POST["name"], $user->db) : false;
@@ -211,6 +212,8 @@ class userController
                     __DIR__ .  '/../images/' . $unique_name
                 ))
 
+                //Objeto para guardar en la base de datos
+                $user = new User();
                 $user->setName($name);
                 $user->setSurname($surname);
                 $user->setUsername($username);

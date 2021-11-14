@@ -1,6 +1,5 @@
 {% extends '@layout/default.twig' %}
 
-{% set viewNav = 'false' %}
 {% set title = 'Error 404' %}
 
 {% block content %}
@@ -18,7 +17,7 @@
             Estás orbitando por páginas desconocidas
         </p>
         <div class="align:center">
-            <a class="button is-primary" href="/">Volver a tierra</a>
+            <a class="button is-primary" href="{{BASE_URL}}">Volver a tierra</a>
         </div>
         <img src="{{BASE_URL}}assets/media/images/astronaut.svg" class="astronaut" />
     </div>

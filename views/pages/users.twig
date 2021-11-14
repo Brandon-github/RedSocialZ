@@ -1,0 +1,29 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = 'Users'  %}
+
+{% block content %}
+<div class="container has-top-margin">
+    <div class="box-container">
+        {% for user in users %}
+            <a href="{{BASE_URL}}account/{{user.nickname}}">
+                <div class="box settingUser">
+                    <div>
+                        {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
+                    </div>
+                    <div>
+                        <h3>
+                            {{user.name ~ ' ' ~ user.surname}}
+                        </h3>
+                        <p class="settingUser-username">@{{user.nickname}}</p>
+                        <p>{{user.biography|slice(0, 50)}}</p>
+                        <span class="settingUser-date opacity:1">
+                            Se unió  {{fromNow(user.created_at)}}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
