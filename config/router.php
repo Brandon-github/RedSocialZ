@@ -33,6 +33,8 @@ $router->get('/form/new/password', 'UserController@new_password');
 
 $router->post('/validate-new-password', 'UserController@change_password');
 
+$router->get('/user/profile', 'UserController@showInfo');
+
 // posts
 $router->get('/new', 'PostController@form');
 

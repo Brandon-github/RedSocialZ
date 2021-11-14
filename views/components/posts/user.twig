@@ -5,7 +5,9 @@
     <div class="user-data">
         <div>
             <span class="username">
-                {{post.user.nickname}}
+                <a href="/user/info" class="userlink">
+                    {{post.user.nickname}}
+                </a>
             </span>
             <span class="date opacity:1">
                 {{fromNow(post.created_at)}}
