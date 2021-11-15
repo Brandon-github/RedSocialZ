@@ -33,6 +33,8 @@ $router->get('/form/new/password', 'UserController@new_password');
 
 $router->post('/validate-new-password', 'UserController@change_password');
 
+$router->get('/user/profile', 'UserController@showInfo');
+
 // posts
 $router->get('/new', 'PostController@form');
 
@@ -45,6 +47,11 @@ $router->get('/p/{id}', 'PostController@page');
 $router->get('/api/like', 'ApiController@like');
 $router->post('/api/unlock', 'ApiController@unlock');
 $router->get('/api/content', 'ApiController@content');
+
+//Buscador
+$router->get("/search/users", 'SearchController@users');
+$router->get("/search/posts", 'SearchController@posts');
+
 
 // error 404
 $router->set404(function () {

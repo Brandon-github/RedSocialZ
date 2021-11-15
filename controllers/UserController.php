@@ -182,7 +182,7 @@ class userController
 
             unset($_SESSION['errors']);
         } else {
-            redirect('');
+            redirect('login');
         }
     }
 
@@ -190,6 +190,7 @@ class userController
     {
         //Validar usuario y redireccion
         if (Helper::isUser() && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == BASE_URL . 'user/update') {
+            //Objeto para escapar caracteres
             $user = new User();
 
             $name = !empty($_POST["name"]) ? sanitizeString($_POST["name"], $user->db) : false;
@@ -211,6 +212,8 @@ class userController
                     __DIR__ .  '/../images/' . $unique_name
                 ))
 
+                //Objeto para guardar en la base de datos
+                $user = new User();
                 $user->setName($name);
                 $user->setSurname($surname);
                 $user->setUsername($username);
@@ -281,6 +284,7 @@ class userController
 
                     //Content
 
+                    $url = BASE_URL . 'form/recover-password';
                     $mail->isHTML(true);
                     $mail->Subject = "[SocialCube] reestablecer contraseña";
                     $mail->Body    = "
@@ -288,7 +292,7 @@ class userController
                         <hr>
                         <h3 style='font-size: 40px'>Tu código es: $token</h3>
                         <hr>
-                        <b>Si no usas este código dentro de las siguientes 24 horas expirará.</b>
+                        <b>Si no usas este código dentro de las siguientes 24 horas expirará. Para obtener un nuevo código visita $url</b>
                         
                         <h2>De parte de: SocialCube :)</h2>
                         ";
@@ -395,6 +399,20 @@ class userController
         }
 
         redirect('');
+    }
+
+    public function showInfo()
+    {
+        if(Helper::isUser())
+        {
+            View::render('@pages/profile.twig', ['user' => $_SESSION['user'], 'errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+                
+            unset($_SESSION['errors']);
+        }
+        else
+        {
+            redirect('');
+        } 
     }
 }
 
