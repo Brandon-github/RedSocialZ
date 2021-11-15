@@ -209,7 +209,7 @@ class userController
 
                 if (!move_uploaded_file(
                     $_FILES['image']['tmp_name'],
-                    __DIR__ .  '/../images/' . $unique_name
+                    __DIR__ .  '/../images/' . $unique_name        
                 ))
 
                 //Objeto para guardar en la base de datos

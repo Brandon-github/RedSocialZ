@@ -1,4 +1,11 @@
 <?php
+//Borra todos los tokens de reinicio de contraseña de la base de datos caducados
+$now = date('h');
+if($now == 12)
+{
+    system('python3 Py/delete.py');
+    //system('python Py/delete.py');
+}
 
 // Inicia sesion e incluye archivos de ayuda
 session_start();
