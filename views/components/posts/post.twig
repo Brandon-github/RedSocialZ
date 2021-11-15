@@ -17,6 +17,26 @@
             Desbloquear
         </button>
     {% endif %}
-    
+
+    {% if post.isSecret %}
+        <div class="post-itents">
+            <div class="open">
+                10 <i data-icon="key"></i>
+            </div>
+            <div class="fail">
+                64 <i data-icon="sentiment_very_dissatisfied"></i>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if post.isSecret %}
+        <div class="post-percentage">
+            <div class="open"></div>
+            <div class="fail"></div>
+        </div>
+    {% else %}
+        <hr>
+    {% endif %}
+
     {% include "@components/posts/buttons.twig" %}
 </div>
