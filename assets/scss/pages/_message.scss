@@ -190,12 +190,12 @@ $width-list: 33%;// ancho de lista de  contacto
             {
                 width: fit-content;
                 padding: 20px 40px;
-                background-color: c.$color;
+                background-color: c.$primary-color;
                 border-radius: 20px;
                 position: relative;
                 margin-right: auto;
                 margin: 20px 0;
-                color: c.$bg;
+                color: c.$color;
                 font-weight: 500;
 
                 &::before
@@ -217,6 +217,7 @@ $width-list: 33%;// ancho de lista de  contacto
                 @extend .message__send;
                 margin-left: auto;
                 margin-right: 0;
+                background-color: c.$secondary-color;
 
                 &::before
                 {
