@@ -1,0 +1,29 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = 'message' %}
+
+{% block content %}
+    <div class="message">
+        {# importacion de listado de contactos  #}
+        {% include '@components/message/list.twig' %}
+        {# contenedor de mensajes #}
+        <div class="message__container">
+            {# barra superior de contacto #}
+            <div class="bar">
+                <div class="bar__block bar__info">
+                    <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=871&q=80" alt="" class="bar__image">
+                    <span class="bar__name">Fernando</span>
+                </div>
+                <div class="bar__block bar__buttons">
+                    <button class="bar__button">
+                        <i data-icon="more_vert"></i>
+                    </button>
+                </div>
+            </div>
+            {# importacion de mensajes #}
+            <div class="message__area">
+                {% include '@components/message/messages.twig' %}
+            </div>
+       </div> 
+    </div>
+{% endblock %}
