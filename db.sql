@@ -74,9 +74,9 @@ CREATE TABLE attempts(
 );
 
 CREATE TABLE reset_password_token(
-id              int not null AUTO_INCREMENT,
-token           INT not null,
-expired_at      TIMESTAMP not null,
-user_email      varchar(30) not null,
-CONSTRAINT pk_reset_password_token PRIMARY KEY(id)
+    id              int not null AUTO_INCREMENT,
+    token           INT not null,
+    expired_at      TIMESTAMP not null,
+    user_email      varchar(30) not null,
+    CONSTRAINT pk_reset_password_token PRIMARY KEY(id)
 );
