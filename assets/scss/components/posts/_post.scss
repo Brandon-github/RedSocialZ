@@ -9,7 +9,7 @@
     background-color: $secondary-bg;
     padding: $padding;
     border-radius: $radius-sm;
-    
+
     &-description {
         margin-top: 0;
         margin-bottom: $margin;
@@ -31,11 +31,51 @@
         gap: $margin;
         margin-top: $margin-sm;
         margin-bottom: $margin-sm;
+
         a {
             display: block;
         }
+
         button {
             text-align: start;
+        }
+    }
+
+    &-percentage {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+
+        div {
+            height: 1px;
+        }
+
+        .open {
+            background-color: $primary-color;
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .fail {
+            background-color: $danger-color;
+            border-radius: 0 1rem 1rem 0;
+            text-align: end;
+        }
+    }
+
+    &-itents {
+        display: grid;
+        @include col(1 1);
+        font-size: 0.8rem;
+
+        .open {
+            color: $primary-color;
+        }
+
+        .fail {
+            color: $danger-color;
+            display: flex;
+            justify-content: flex-end;
         }
     }
 }

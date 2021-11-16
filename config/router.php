@@ -50,10 +50,6 @@ $router->get('/api/like', 'ApiController@like');
 $router->post('/api/unlock', 'ApiController@unlock');
 $router->get('/api/content', 'ApiController@content');
 
-//Buscador
-$router->get("/search/users", 'SearchController@users');
-$router->get("/search/posts", 'SearchController@posts');
-
 
 // error 404
 $router->set404(function () {

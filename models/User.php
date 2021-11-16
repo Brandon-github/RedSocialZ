@@ -266,22 +266,6 @@ class User
     
     }
 
-    //Funcion para buscar usuarios
-    public function search($query)
-    {
-        $search = $this->db->query("SELECT * FROM users WHERE name LIKE '%$this->name%' OR nickname LIKE '%$this->username%'");
-
-        if($search->num_rows == 0)
-        {
-            return false;
-        }
-        else
-        {
-            return $search->fetch_assoc();
-        }
-    
-    }
-
     public function __destruct()
     {
         $this->db->close();
