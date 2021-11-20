@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+
+  <ul id="messages"></ul>
+  <input id="myMessage" type="text">
+  <button id="send">Send</button>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/socket.io-client@4.3.2/dist/socket.io.min.js"></script>
+  <script>
+    //const socket = io() asi estaba por defecto
+    const socket = io("127.0.0.1:5000");
+
+    socket.emit('message', 'hello')
+
+    socket.on('message', function (msg) {
+      console.log('hola mundo');
+      $('#messages').append('<li>' + msg + '</li>')
+    })
+
+    $('#send').on('click', function () {
+      socket.send($('#myMessage').val());
+      $('#myMessage').val('');
+    })
+  </script>
+</body>
+
+</html>

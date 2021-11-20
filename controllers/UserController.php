@@ -401,7 +401,7 @@ class userController
         redirect('');
     }
 
-    public function showInfo()
+    public function show_profile()
     {
         if(Helper::isUser())
         {
@@ -432,6 +432,20 @@ class userController
             redirect('');
         } 
 
+    }
+
+    public function message()
+    {
+        if(Helper::isUser())
+        {
+            View::render('@pages/message.twig', ['user' => $_SESSION['user'], 'error' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
+
+            unset($_SESSION['errors']);
+        } 
+        else
+        {
+            redirect('');
+        }
     }
 }
 
