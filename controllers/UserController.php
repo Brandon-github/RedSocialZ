@@ -405,14 +405,33 @@ class userController
     {
         if(Helper::isUser())
         {
-            View::render('@pages/profile.twig', ['user' => $_SESSION['user'], 'errors' => isset($_SESSION['errors']) ? $_SESSION['errors'] : '']);
-                
-            unset($_SESSION['errors']);
+            $user = $_SESSION['user'];
+
+            ob_start();
+
+            system('python3 ' . __DIR__ ."/../Py/followers.py view_followers $user->id");
+
+            //Obtener los seguidores de un usuario
+            $followers = ob_get_contents();
+
+            ob_clean();
+
+            system('python3 ' . __DIR__ ."/../Py/followers.py view_following $user->id");
+
+
+            //Ver a cuantas personas sigue un usuario
+            $following = ob_get_contents();
+
+            ob_end_clean();
+
+            View::render('@pages/profile.twig', ['user' => $user, 'data' => [$followers, $following]]);
+
         }
         else
         {
             redirect('');
         } 
+
     }
 }
 

@@ -80,3 +80,12 @@ CREATE TABLE reset_password_token(
     user_email      varchar(30) not null,
     CONSTRAINT pk_reset_password_token PRIMARY KEY(id)
 );
+
+CREATE TABLE followers(
+    id              int not null AUTO_INCREMENT,
+    id_follower     int not null,
+    id_following    int not null,
+    CONSTRAINT pk_followers PRIMARY KEY(id),
+    CONSTRAINT fk_follorwers_follower FOREIGN KEY(id_follower) REFERENCES users(id),
+    CONSTRAINT fk_follorwers_following FOREIGN KEY(id_following) REFERENCES users(id)
+);

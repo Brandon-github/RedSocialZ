@@ -1,46 +1,66 @@
 {% extends '@layout/default.twig' %}
 
 {% set title = 'Perfil' %}
+{% set isOwned = isOwned %}
 
 {% block content %}
+
+{# si el usuario de la imagen no es dueño muestra una vista #}
+{% if isOwned == 0 %}
 <div class="container has-top-margin">
     <div class="user">
         <div class="user__container">
             <div class="user__block">
-                <img src="https://images.unsplash.com/photo-1618224706414-92301b84910d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="" class="user__image">
+                <img src="{{BASE_URL}}images/{{user.image_uuid}}" alt="Este usuario no tiene foto de perfil" class="user__image">
             </div>
             <div class="user__block">
                 <div class="user__row">
+                    <hr>
                     <span class="user__name">
                         {{user.name ~ ' ' ~ user.surname}}
+                        <br>
+                        @{{user.nickname}}
                     </span>
+                    
                     <div class="user__buttons">
-                        <a href="/" class="user__button">Enviar mensaje</a>
-                        <a href="/" class="user__button">
+                        <a href="{{BASE_URL}}" class="user__button">Enviar mensaje</a>
+                        <a href="{{BASE_URL}}" class="user__button">
                             <i data-icon="person"></i>
                             <i data-icon="done"></i>
                         </a>
-                        <a href="/" class="user__button"><i data-icon="keyboard_arrow_down"></i></a>
-                        {# <button href="/" class="user__button user__button--menu">Enviar mensaje</button> #}
+                        <a href="{{BASE_URL}}" class="user__button"><i data-icon="keyboard_arrow_down"></i></a>
+                        <button href="{{BASE_URL}}" class="user__button user__button--menu">Enviar mensaje</button>
+                        
+                        
+                        <hr>
+                        {# comprueba si el usuario ya esta siguiendo el usuario de esta página #}
+
+
+                        <button href="{{BASE_URL}}" class="add_follower">Seguir usuario</button>
+
+                        <button href="{{BASE_URL}}" class="delete_follower">Dejar de seguir</button>
+
                     </div>
+                    
                 </div> 
                 <div class="user__row user__socials">
+                    <hr>
                     <div class="user__social">
-                        <span class="user__date">445</span>
-                        <p class="user__text">publicaciones</p>
+                        <p class="user__text">Publicaciones <span class="user__date">(445)</span></p>
                     </div>
+                    <hr>
                     <div class="user__social">
-                        <span class="user__date">10.4m</span>
-                        <p class="user__text">Seguidores</p>
+                        <p class="user__text">Seguidores <span class="user__date">({{data.0|slice(0, -1)}})</span></p>
                     </div>
+                    <hr class="followers_hr">
                     <div class="user__social">
-                        <span class="user__date">214</span>
-                        <p class="user__text">Seguidos</p>
+                        <p class="user__text">Sigue a <span class="user__date">({{data.1|slice(0, -1)}})</span></p>
                     </div>
+                    <hr>
                 </div>
                 <div class="user__row">
                     <p class="user__paragraph">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit massa neque fringilla odio, euismod class suscipit netus malesuada porta aptent pellentesque vivamus venenatis potenti, phasellus placerat molestie pulvinar cubilia commodo posuere integer arcu curabitur. Duis libero augue vivamus auctor ad ante dictumst eu non class phasellus orci imperdiet, luctus laoreet gravida mus metus massa nulla tempus magna tempor molestie. Nibh scelerisque curabitur conubia odio a netus iaculis consequat ut eget, volutpat turpis orci tellus placerat ligula pellentesque posuere velit quam libero, enim egestas fermentum tempor vestibulum quis tincidunt neque ultricies.
+                        {{user.biography}}
                     </p>
                 </div>
             </div>
@@ -52,4 +72,109 @@
         </div>
     </div> 
 </div>
+
+<script>
+$(document).ready(function()
+{
+    var isset_follower = {{isset_follower}}
+
+    if(isset_follower == 0)
+    {
+        $('.add_follower').show()
+        $('.delete_follower').hide()
+    }
+    else
+    {
+        $('.add_follower').hide()
+        $('.delete_follower').show()
+    }
+
+
+})
+
+
+$(".add_follower").click(function()
+{
+    
+    $.ajax({
+        url: '{{BASE_URL}}add_follower',
+        data:{
+            'user': '{{user.id}}'
+        },
+        type: 'POST',
+    })
+
+    $('.add_follower').slideUp()
+    $('.delete_follower').slideDown()
+
+})
+
+$(".delete_follower").click(function()
+{
+    
+    $.ajax({
+        url: '{{BASE_URL}}delete_follower',
+        data:{
+            'user': '{{user.id}}'
+        },
+        type: 'POST',
+    })
+
+    $('.delete_follower').slideUp()
+    $('.add_follower').show()
+
+})
+
+</script>
+
+{# y si es el dueño muestra otra #}
+{% else %}
+
+<div class="container has-top-margin">
+    <div class="user">
+        <div class="user__container">
+            <div class="user__block">
+                <img src="{{BASE_URL}}images/{{user.image_uuid}}" alt="Este usuario no tiene foto de perfil" class="user__image">
+            </div>
+            <div class="user__block">
+                <div class="user__row">
+                    <hr>
+                    <span class="user__name">
+                        {{user.name ~ ' ' ~ user.surname}}
+                        <br>
+                        @{{user.nickname}}
+                    </span>
+                </div> 
+                <div class="user__row user__socials">
+                    <hr>
+                    <div class="user__social">
+                        <p class="user__text">Publicaciones <span class="user__date">(445)</span></p>
+                    </div>
+                    <hr>
+                    <div class="user__social">
+                        <p class="user__text">Seguidores <span class="user__date">({{data.0|slice(0, -1)}})</span></p>
+                    </div>
+                    <hr>
+                    <div class="user__social">
+                        <p class="user__text">Sigue a <span class="user__date">({{data.1|slice(0, -1)}})</span></p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="user__row">
+                    <p class="user__paragraph">
+                        {{user.biography}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="user__container">
+            <div class="posts">
+                {% include '@components/posts/post.twig' with {post: post} %}
+            </div>
+        </div>
+    </div> 
+</div>
+
+{% endif %}
+
 {% endblock %}

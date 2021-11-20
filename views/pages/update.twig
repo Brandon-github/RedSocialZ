@@ -5,21 +5,23 @@
 {% block content %}
 <div class="container has-top-margin">
     <div class="box-container">
-        <div class="box settingUser">
-            <div>
-                {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
+        <a href="{{BASE_URL}}user/profile">
+            <div class="box settingUser">
+                    <div>
+                        {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
+                    </div>
+                    <div>
+                        <h3>
+                            {{user.name ~ ' ' ~ user.surname}}
+                        </h3>
+                        <p class="settingUser-username">@{{user.nickname}}</p>
+                        <p>{{user.biography}}</p>
+                        <span class="settingUser-date opacity:1">
+                            Se unió  {{fromNow(user.created_at)}}
+                        </span>
+                    </div>
             </div>
-            <div>
-                <h3>
-                    {{user.name ~ ' ' ~ user.surname}}
-                </h3>
-                <p class="settingUser-username">@{{user.nickname}}</p>
-                <p>{{user.biography}}</p>
-                <span class="settingUser-date opacity:1">
-                    Se unió  {{fromNow(user.created_at)}}
-                </span>
-            </div>
-        </div>
+        </a>
 
         <div class="box mg-top:lg">
             <p class="text:center text:danger">{{ errors[1062] }}</p>
@@ -52,7 +54,7 @@
                 </div>
                 <div class="field">
                     <label class="label">Biografía</label>
-                    <textarea style="height: 40px" autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
+                    <textarea style="height: 70px" autocomplete="off" name="biography" type="text" class="input">{{user.biography}}</textarea>
                 </div>
                 <div class="field mg-top:lg">
                     <button class="button is-primary is-fullwidth" type="submit">

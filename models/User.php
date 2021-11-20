@@ -266,6 +266,21 @@ class User
     
     }
 
+    public function account($nickname, $id_user)
+    {
+        $query = $this->db->query("SELECT * FROM users WHERE id={$id_user} AND nickname='{$nickname}'");
+    
+        if($query->num_rows != 0)
+        {
+            return $query->fetch_object();
+        }
+        else
+        {
+            return 0;
+        }
+    
+    }
+
     public function __destruct()
     {
         $this->db->close();

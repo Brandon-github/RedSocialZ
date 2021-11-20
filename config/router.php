@@ -48,6 +48,12 @@ $router->get('/api/like', 'ApiController@like');
 $router->post('/api/unlock', 'ApiController@unlock');
 $router->get('/api/content', 'ApiController@content');
 
+//Perfiles de usuarios
+$router->get('/account/{nickname}/{id}', 'FollowerController@account');
+
+//Añadir y eliminar seguidores
+$router->post('/add_follower', 'FollowerController@add');
+$router->post('/delete_follower', 'FollowerController@delete');
 
 // error 404
 $router->set404(function () {
