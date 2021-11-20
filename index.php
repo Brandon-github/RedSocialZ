@@ -6,11 +6,9 @@ if($now == '12' || $now == '19')
     system('python3 Py/delete.py');
     //system('python Py/delete.py');
 }
-
 // Inicia sesion e incluye archivos de ayuda
 session_start();
 ob_start();
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
