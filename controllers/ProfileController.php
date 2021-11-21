@@ -19,7 +19,8 @@ class ProfileController {
             'user' => $userData,
             'data' => [
                 'isfollowed' => Follower::isFollowed($userData->id),
-                'followers' => Follower::getNumberOfFollowers($userData->id)
+                'followers' => Follower::getNumberOfFollowers($userData->id),
+                'followed' => Follower::getNumberOfFollowed($userData->id)
             ],
             'posts' => Post::getUserPosts($userData->id)
         ]);

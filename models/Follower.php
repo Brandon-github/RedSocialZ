@@ -8,6 +8,10 @@ Class Follower extends Orm {
     }
 
     static function getNumberOfFollowers($id) {
-        return self::sql("SELECT COUNT(*) AS :table FROM followers WHERE user_id={$id}", Orm::FETCH_ONE)->followers;
+        return self::sql("SELECT COUNT(*) AS followers FROM :table WHERE user_id={$id}", Orm::FETCH_ONE)->followers;
+    }
+
+    static function getNumberOfFollowed($id) {
+        return self::sql("SELECT COUNT(*) AS followed FROM :table WHERE follower_id={$id}", Orm::FETCH_ONE)->followed;
     }
 }
