@@ -2,10 +2,6 @@
 
 use LitEmoji\LitEmoji;
 
-Class UserModel extends Orm {
-    protected static $table = 'users';
-}
-
 class Post extends Orm {
     protected static $table = 'posts';
 

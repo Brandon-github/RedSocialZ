@@ -1,95 +1,57 @@
-@use '../config/config' as c;
+@use '../config/config'as c;
 
-.user
-{
-    width: inherit;
-    height: inherit;
+.user {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: $radius;
+    
+    &::after {
+        border-radius: $radius;
+        backdrop-filter: blur(20px);
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
+    
+    &__container {
+        position: relative;
+        z-index: 1;
+        padding: 1.5rem;
+    }
 
-    .user__container
-    {
-        width: inherit;
-        height: inherit;
-        display: flex;
-        padding-top: 2rem;
+    &__top {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: $margin-lg;
+    }
 
-        .user__block
-        {
-            width: 400px;
+    &__photo {
+        max-width: 250px;
+        margin: auto;
+    }
 
-            &:nth-child(2)
-            {
-                width: 700px;
-            }
-
-            .user__image
-            {
-                width: 250px;
-                height: 250px;
-                border-radius: 50%;
-                object-fit: cover;
-                margin-left: 3rem;
-            }
-
-            .user__row
-            {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                width: 100%;
-
-                &.user__socials
-                {
-                    margin-top: 2rem;
-                    justify-content: space-between;
-                }
-
-                .user__name
-                {
-                    font-size: 2em;
-                    font-weight: 300;
-                }
-
-                .user__buttons
-                {
-                    display: flex;
-                    margin-left: 2rem;
-
-                    .user__button
-                    {
-                        padding: 10px;
-                        border: 1px solid #fff;
-                        margin-left: 20px;
-                        border-radius: 10px;
-                    }
-                }
-
-                .user__social
-                {
-                    display: flex;
-                    align-items: center;
-                    font-size: 1.2em;
-
-                    .user__date
-                    {
-                        font-weight: 900;
-                    }
-
-                    .user__text
-                    {
-                        margin-left: 20px;
-                        font-weight: 300;
-                    }
-                }
-
-                .user__paragraph
-                {
-                    text-align: justify;
-                    margin-top: 2rem;
-                }
-
-            }
-        }
-
-        @import '../components/posts/_post.scss';
+    &__name {
+        margin-top: $margin;
+        text-align: center;
+    }
+    
+    &__username {
+        display: block;
+    }
+    
+    &__actions {
+        margin-top: $margin;
+        text-align: center;
+    }
+    
+    &__data {
+        display: grid;
+        margin-top: $margin-lg;
+        @include col(1 1 1);
+        text-align: center;
     }
 }

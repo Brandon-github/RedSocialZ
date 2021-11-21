@@ -53,6 +53,8 @@ $router->get('/api/content', 'ApiController@content');
 //Perfiles de usuarios
 $router->get('/account/{nickname}/{id}', 'FollowerController@account');
 
+$router->get('/@(\w+)', 'ProfileController@profile');
+
 //Añadir y eliminar seguidores
 $router->post('/add_follower', 'FollowerController@add');
 $router->post('/delete_follower', 'FollowerController@delete');

@@ -2,12 +2,6 @@
 
 use const config\HASH_ID_SALT;
 
-function protegido() {
-    if(!isset($_SESSION['user'])){
-        redirect('login');
-    }
-}
-
 require_once __DIR__ . '/../models/Post.php';
 
 class postController
@@ -49,7 +43,7 @@ class postController
         }
     }
     public function page($hash) {
-        protegido();
+        requiresAuth();
 
         $hashids = new Hashids(HASH_ID_SALT);
 

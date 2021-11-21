@@ -1,0 +1,63 @@
+{% extends '@layout/default.twig' %}
+
+{% set title = "#{user.name} (@#{user.nickname})" %}
+
+{% block content %}
+
+<div class="container has-top-margin">
+    <div class="box-container">
+        <div class="user" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('{{userAvatar(user.image_uuid, user.email)}}');">
+            <div class="user__container">
+                <div class="user__photo">
+                    {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
+                </div>
+
+                <div class="user__name">
+                    <h2>
+                        {{user.name ~ ' ' ~ user.surname}}
+                    </h2>
+
+                    <span class="user__username">
+                        @{{user.nickname}}
+                    </span>
+                </div>
+
+                {# si el prefil es del usuario autentificado muestra otros botones #}
+                {% if user.id == currentUser.id %}
+                    <div class="user__actions">
+                        <a href="{{BASE_URL}}user/update" class="button is-primary is-outlined is-small">
+                            <i data-icon='settings'></i>
+                            Editar perfil
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="user__actions">
+                        <a href="/" class="button is-primary is-outlined is-small">
+                            <i data-icon='chat'></i>
+                            Chat
+                        </a>
+                        <a href="{{BASE_URL}}" class="button is-primary is-outlined is-small">
+                            <i data-icon='person_add'></i>
+                            Seguir
+                        </a>
+                    </div>
+                {% endif %}
+
+
+                <div class="user__data">
+                    <span>
+                        {{user.number.posts|default('0')}} posts
+                    </span>
+                    <span>
+                        {{user.number.followers|default('0')}} seguidores
+                    </span>
+                    <span>
+                        {{user.number.followed|default('0')}} seguidos
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
