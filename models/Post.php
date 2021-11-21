@@ -25,6 +25,11 @@ class Post extends Orm {
         # all posts
         return Post::sql("SELECT * FROM :table ORDER BY created_at DESC LIMIT {$offset}, {$limit}");
     }
+    
+    static function getUserPosts($userid, $limit = 5, $offset = 0) {
+        # retorna solo los posts del usuario
+        return Post::sql("SELECT * FROM :table WHERE user_id = {$userid} ORDER BY created_at DESC LIMIT {$offset}, {$limit}");
+    }
 
     protected function filterOut () {
         $this->user = UserModel::retrieveByPK(isset($this->user_id) ? $this->user_id : 1); # obtiene el usuario de cada post con el user_id

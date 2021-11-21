@@ -4,11 +4,17 @@ import Scrolly from './utils/scroll.js';
 import sharePost from './lib/sharePost.js';
 
 const router = new Router();
+const scrolly = new Scrolly();
+scrolly.start();
 
 router.onPage('/', () => {
+    scrolly.reset();
     sharePost();
-    const scrolly = new Scrolly();
-    scrolly.start();
+})
+
+router.onPage('/@(.*)', () => {
+    scrolly.reset();
+    sharePost();
 })
 
 router.onPage('/p/(.*)', () => {

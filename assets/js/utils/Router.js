@@ -8,6 +8,9 @@ class Router {
     getPath() {
         return window.location.pathname;
     }
+    static getPath() {
+        return window.location.pathname;
+    }
     /**
      * @param {String} page 
      * @param {Function} callback 

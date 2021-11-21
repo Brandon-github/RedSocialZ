@@ -3419,6 +3419,9 @@ class Router {
     getPath() {
         return window.location.pathname;
     }
+    static getPath() {
+        return window.location.pathname;
+    }
     onPage(page, callback) {
         if (typeof page == 'undefined' || typeof callback == 'undefined') {
             console.warn('No se agrego la funcion por que no se pasaron los parametros');
@@ -3500,15 +3503,24 @@ class Scrolly {
         const viewposition = window.scrollY + scrollbarHeight - 5;
         return 100 * viewposition / scrollHeight;
     }
+    reset() {
+        this.load = false;
+        this.loadall = false;
+        this.offset = 5;
+    }
     finish() {
         document.getElementById('loading-svg').style.display = 'none';
     }
     start() {
         window.addEventListener("scroll", (event)=>{
-            if (this.scrollPosition() > 70 && !this.load && !this.loadall) {
+            const userPosts = /^\/@/.test(Router.getPath());
+            const checkPath = Router.getPath() === '/' || userPosts ? true : false;
+            if (this.scrollPosition() > 70 && !this.load && !this.loadall && checkPath) {
                 this.load = true;
                 const container = document.getElementById('posts-container');
-                fetch(`${baseUrl}api/content?limit=5&offset=${this.offset}`).then((r)=>r.json()
+                const url = `${baseUrl}api/content?limit=5&offset=${this.offset}${userPosts ? '&user=' + Router.getPath().match(/\w+/g)[0] : ''}`;
+                console.log(url);
+                fetch(url).then((r)=>r.json()
                 ).then((response)=>{
                     this.offset += 5;
                     container.insertAdjacentHTML('beforeend', response.content);
@@ -3526,10 +3538,15 @@ class Scrolly {
     }
 }
 const router = new Router();
+const scrolly = new Scrolly();
+scrolly.start();
 router.onPage('/', ()=>{
+    scrolly.reset();
     sharePost();
-    const scrolly = new Scrolly();
-    scrolly.start();
+});
+router.onPage('/@(.*)', ()=>{
+    scrolly.reset();
+    sharePost();
 });
 router.onPage('/p/(.*)', ()=>{
     sharePost();

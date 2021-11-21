@@ -1,5 +1,6 @@
 import sharePost from '../lib/sharePost.js';
 import LazyImages from './LazyImages.js';
+import Router from './Router.js';
 
 class Scrolly {
     load = false;
@@ -16,6 +17,12 @@ class Scrolly {
         // porcentaje en el que se encuentra
         return (100 * viewposition) / scrollHeight;
     }
+    
+    reset() {
+        this.load = false;
+        this.loadall = false;
+        this.offset = 5;
+    }
 
     finish() {
         document.getElementById('loading-svg').style.display = 'none';
@@ -23,12 +30,18 @@ class Scrolly {
 
     start() {
         window.addEventListener("scroll", (event) => {
-            if (this.scrollPosition() > 70 && !this.load && !this.loadall) {
+            const userPosts = /^\/@/.test(Router.getPath());
+            const checkPath = Router.getPath() === '/' || userPosts ? true : false;
+
+            if (this.scrollPosition() > 70 && !this.load && !this.loadall && checkPath) {
                 this.load = true;
 
                 const container = document.getElementById('posts-container');
 
-                fetch(`${baseUrl}api/content?limit=5&offset=${this.offset}`).then(r => r.json()).then(response => {
+                const url = `${baseUrl}api/content?limit=5&offset=${this.offset}${userPosts ? '&user=' + Router.getPath().match(/\w+/g)[0] : ''}`;
+                console.log(url);
+
+                fetch(url).then(r => r.json()).then(response => {
 
                     this.offset += 5;
 

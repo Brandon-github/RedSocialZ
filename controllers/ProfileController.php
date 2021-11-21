@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../models/Post.php';
+
 class ProfileController {
     # perfil del usuario
     public function profile($username) {
@@ -14,7 +16,8 @@ class ProfileController {
         if (!$userData) View::error404();
 
         View::render('@pages/profile2.twig', [
-            'user' => $userData
+            'user' => $userData,
+            'posts' => Post::getUserPosts($userData->id)
         ]);
     }
 }

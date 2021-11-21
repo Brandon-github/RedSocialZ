@@ -63,7 +63,18 @@ class ApiController {
     public function content() {
         $limit = input('limit');
         $offset = input('offset');
-        $posts = Post::getAll($limit, $offset);
+        $username = input('user');
+
+        # comprueba si el contenido solo es de un usuario
+        if ($username) {
+            $user = UserModel::retrieveByField('nickname', $username, Orm::FETCH_ONE);
+
+            if (!$user) return '';
+
+            $posts = Post::getUserPosts($user->id, $limit, $offset);
+        } else {
+            $posts = Post::getAll($limit, $offset);
+        }
 
         header('Content-type: application/json');
 
