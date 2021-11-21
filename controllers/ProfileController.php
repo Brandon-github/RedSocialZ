@@ -18,7 +18,8 @@ class ProfileController {
         View::render('@pages/profile2.twig', [
             'user' => $userData,
             'data' => [
-                'isfollowed' =>Follower::isFollowed($userData->id)
+                'isfollowed' => Follower::isFollowed($userData->id),
+                'followers' => Follower::getNumberOfFollowers($userData->id)
             ],
             'posts' => Post::getUserPosts($userData->id)
         ]);
