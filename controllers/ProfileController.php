@@ -15,7 +15,7 @@ class ProfileController {
         # si no existe un usuario con el nickname se muestra la vista de error 404
         if (!$userData) View::error404();
 
-        View::render('@pages/profile2.twig', [
+        View::render('@pages/user/profile.twig', [
             'user' => $userData,
             'data' => [
                 'isfollowed' => Follower::isFollowed($userData->id),
