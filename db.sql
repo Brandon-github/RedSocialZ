@@ -83,9 +83,9 @@ CREATE TABLE reset_password_token(
 
 CREATE TABLE followers(
     id              int not null AUTO_INCREMENT,
-    id_follower     int not null,
-    id_following    int not null,
+    user_id     int not null,
+    follower_id    int not null,
     CONSTRAINT pk_followers PRIMARY KEY(id),
-    CONSTRAINT fk_follorwers_follower FOREIGN KEY(id_follower) REFERENCES users(id),
-    CONSTRAINT fk_follorwers_following FOREIGN KEY(id_following) REFERENCES users(id)
+    CONSTRAINT follorwers_user FOREIGN KEY(user_id) REFERENCES users(id),
+    CONSTRAINT follorwers_follower FOREIGN KEY(follower_id) REFERENCES users(id)
 );
