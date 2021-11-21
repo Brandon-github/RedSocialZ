@@ -39,7 +39,6 @@ class Scrolly {
                 const container = document.getElementById('posts-container');
 
                 const url = `${baseUrl}api/content?limit=5&offset=${this.offset}${userPosts ? '&user=' + Router.getPath().match(/\w+/g)[0] : ''}`;
-                console.log(url);
 
                 fetch(url).then(r => r.json()).then(response => {
 

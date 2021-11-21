@@ -49,6 +49,7 @@ $router->get('/p/{id}', 'PostController@page');
 $router->get('/api/like', 'ApiController@like');
 $router->post('/api/unlock', 'ApiController@unlock');
 $router->get('/api/content', 'ApiController@content');
+$router->get('/api/follow', 'ProfileController@follow');
 
 //Perfiles de usuarios
 $router->get('/account/{nickname}/{id}', 'FollowerController@account');

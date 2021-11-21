@@ -8,6 +8,10 @@ import Api from './utils/Api.js';
 import global from './utils/global.js';
 import { unlock } from './utils/helpers.js';
 import { swup } from './swup.js';
+import FollowButton from './webcomponents/follow-button.js';
+
+// define components
+customElements.define('follow-button', FollowButton);
 
 const lazyImages = new LazyImages();
 lazyImages.start(); // lazy load de imagenes

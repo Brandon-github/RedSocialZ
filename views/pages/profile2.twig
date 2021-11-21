@@ -6,7 +6,7 @@
 
 <div class="container has-top-margin">
     <div class="box-container">
-        <div class="user" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('{{userAvatar(user.image_uuid, user.email)}}');">
+        <div class="user" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8) ), url('{{userAvatar(user.image_uuid, user.email)}}');">
             <div class="user__container">
                 <div class="user__photo">
                     {% include "@components/images/circle.twig" with {src: userAvatar(user.image_uuid, user.email)} %}
@@ -36,10 +36,8 @@
                             <i data-icon='chat'></i>
                             Chat
                         </a>
-                        <a href="{{BASE_URL}}" class="button is-primary is-outlined is-small">
-                            <i data-icon='person_add'></i>
-                            Seguir
-                        </a>
+                        {# webcomponent del boton de seguir #}
+                        <follow-button user='{{user.id}}' {{ data.isfollowed ? 'followed' : '' }}></follow-button>
                     </div>
                 {% endif %}
 

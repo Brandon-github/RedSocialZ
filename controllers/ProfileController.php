@@ -17,7 +17,33 @@ class ProfileController {
 
         View::render('@pages/profile2.twig', [
             'user' => $userData,
+            'data' => [
+                'isfollowed' =>Follower::isFollowed($userData->id)
+            ],
             'posts' => Post::getUserPosts($userData->id)
         ]);
+    }
+
+    public function follow() {
+        $user_id = input('user');
+        $follower_id = $_SESSION['user']->id;
+
+        # si los datos son correctos
+        if (!$user_id) return;
+        if ($user_id === $follower_id) return;
+
+        $followed = Follower::isFollowed($user_id);
+
+        # comprueba si el usuario ya siguio a esa persona
+        if ($followed) {
+            # deja de seguir
+            Follower::sql("DELETE FROM :table WHERE id={$followed->id}", Orm::FETCH_NONE);
+        } else {
+            $follower = new Follower();
+            $follower->user_id = $user_id;
+            $follower->follower_id = $follower_id;
+    
+            $follower->save();
+        }
     }
 }
