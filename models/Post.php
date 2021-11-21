@@ -31,6 +31,10 @@ class Post extends Orm {
         return Post::sql("SELECT * FROM :table WHERE user_id = {$userid} ORDER BY created_at DESC LIMIT {$offset}, {$limit}");
     }
 
+    static function getNumberOfUserPosts($id) {
+        return count(self::sql("SELECT * FROM :table WHERE user_id = {$id}"));
+    }
+
     protected function filterOut () {
         $this->user = UserModel::retrieveByPK(isset($this->user_id) ? $this->user_id : 1); # obtiene el usuario de cada post con el user_id
 
